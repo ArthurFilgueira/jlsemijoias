@@ -1,0 +1,2438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jéssica Laysa Acessórios | Semi Joias & Óculos</title>
+<meta name="description" content="Curadoria de semi joias banhadas a ouro 18k e óculos selecionados. Qualidade premium, atendimento humanizado e peças que fazem a diferença.">
+<script>
+(function(){
+  try{
+    if(localStorage.getItem('jl_theme')==='dark') document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<style>
+:root{
+  --ivory:#FAF7F1;
+  --ivory-deep:#F3EEE4;
+  --onyx:#15130F;
+  --ink:#15130F;
+  --on-dark:#FAF7F1;
+  --graphite:#4B463E;
+  --stone:#E7E1D4;
+  --white:#FFFFFF;
+  --gold:#C9A227;
+  --gold-deep:#8C6E17;
+  --gold-light:#EADFB6;
+  --shadow: 0 20px 60px -30px rgba(21,19,15,0.35);
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+:root[data-theme="dark"]{
+  --ivory:#161512;
+  --ivory-deep:#1E1C18;
+  --ink:#F3EEE4;
+  --graphite:#B8B2A4;
+  --stone:#3A362E;
+  --white:#211F1A;
+  --gold-deep:#D8B454;
+  --gold-light:rgba(201,162,39,.22);
+  --shadow: 0 20px 60px -30px rgba(0,0,0,0.6);
+}
+:root[data-theme="dark"] header.scrolled{background:rgba(22,21,18,.92);}
+:root[data-theme="dark"] .hero-visual .caption{background:rgba(22,21,18,.85);}
+:root[data-theme="dark"] .btn-gold{background:var(--gold);color:var(--onyx);}
+:root[data-theme="dark"] .modal-close{border-color:var(--graphite);background:rgba(250,247,241,.06);}
+:root[data-theme="dark"] .modal-close:hover{border-color:var(--gold);background:rgba(201,162,39,.14);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Manrope',sans-serif;
+  background:var(--ivory);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  transition:background .4s var(--ease), color .4s var(--ease);
+}
+img,svg{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+ul{list-style:none;}
+.serif{font-family:'Fraunces',serif;}
+.container{width:min(1240px,92%);margin:0 auto;}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold-deep);font-weight:700;
+}
+::selection{background:var(--gold-light);color:var(--ink);}
+:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease), transform .8s var(--ease);}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ---------- thread motif ---------- */
+.thread-divider{width:100%;height:34px;overflow:hidden;}
+.thread-divider svg{width:100%;height:100%;}
+.thread-divider path{
+  fill:none;stroke:var(--gold);stroke-width:1;stroke-dasharray:900;stroke-dashoffset:900;
+  transition:stroke-dashoffset 1.6s var(--ease);
+}
+.thread-divider.in path{stroke-dashoffset:0;}
+
+/* ---------- corner brackets (signature) ---------- */
+.bracket{position:relative;}
+.bracket::before,.bracket::after{
+  content:'';position:absolute;width:18px;height:18px;
+  border:1px solid var(--gold);opacity:.85;transition:all .5s var(--ease);
+}
+.bracket::before{top:10px;left:10px;border-right:none;border-bottom:none;}
+.bracket::after{bottom:10px;right:10px;border-left:none;border-top:none;}
+.bracket:hover::before{top:6px;left:6px;}
+.bracket:hover::after{bottom:6px;right:6px;}
+
+/* ---------- header ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:22px 0;transition:background .4s var(--ease), padding .4s var(--ease), box-shadow .4s var(--ease);
+}
+header .container{display:flex;align-items:center;justify-content:space-between;}
+header.scrolled{background:rgba(250,247,241,.92);backdrop-filter:blur(10px);padding:14px 0;box-shadow:0 1px 0 var(--stone);}
+.logo{display:flex;flex-direction:column;line-height:1;}
+.logo .name{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:500;letter-spacing:.01em;}
+.logo .tag{font-size:.6rem;letter-spacing:.32em;color:var(--gold-deep);margin-top:4px;font-weight:700;}
+.logo-img{height:78px;width:auto;display:block;border-radius:3px;transition:transform .3s var(--ease), height .4s var(--ease);}
+.logo:hover .logo-img{transform:scale(1.03);}
+header.scrolled .logo-img{height:56px;}
+.footer-logo-img{height:92px;width:auto;display:block;border-radius:3px;}
+nav.main-nav{display:flex;align-items:center;gap:34px;}
+nav.main-nav a{
+  font-size:.82rem;letter-spacing:.03em;font-weight:600;position:relative;padding:4px 0;color:var(--ink);
+}
+nav.main-nav a::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .35s var(--ease);
+}
+nav.main-nav a:hover::after{width:100%;}
+.header-actions{display:flex;align-items:center;gap:16px;}
+.icon-btn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid var(--stone);transition:.3s var(--ease);}
+.icon-btn:hover{border-color:var(--gold);background:var(--gold-light);}
+.theme-toggle svg{stroke:var(--ink);}
+.menu-toggle{display:none;flex-direction:column;gap:5px;width:26px;}
+.menu-toggle span{height:1px;background:var(--ink);width:100%;transition:.3s;}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 30px;font-size:.78rem;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:700;border-radius:999px;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease), color .35s var(--ease);
+}
+.btn-gold{background:var(--onyx);color:var(--on-dark);}
+.btn-gold:hover{background:var(--gold-deep);transform:translateY(-2px);box-shadow:var(--shadow);}
+.btn-outline{border:1px solid var(--ink);color:var(--ink);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold-deep);transform:translateY(-2px);}
+.btn-whatsapp{background:transparent;border:1px solid var(--gold);color:var(--gold-deep);}
+.btn-whatsapp:hover{background:var(--gold);color:var(--onyx);transform:translateY(-2px);}
+.btn-sm{padding:10px 20px;font-size:.68rem;}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100svh;display:flex;align-items:center;padding-top:110px;
+  position:relative;
+}
+.hero .container{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;}
+.hero-copy .eyebrow{margin-bottom:22px;display:block;}
+.hero-copy h1{
+  font-size:clamp(2.3rem,4.2vw,3.6rem);font-weight:500;line-height:1.12;letter-spacing:-.01em;
+  margin-bottom:26px;
+}
+.hero-copy h1 em{font-style:italic;color:var(--gold-deep);}
+.hero-copy p{font-size:1.02rem;color:var(--graphite);max-width:46ch;margin-bottom:38px;line-height:1.7;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+.hero-visual{position:relative;aspect-ratio:3/4;}
+.hero-visual .frame{
+  position:absolute;inset:0;border-radius:2px;
+  background:var(--white);
+  box-shadow:var(--shadow);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.hero-visual .caption{
+  position:absolute;bottom:24px;left:24px;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--graphite);background:rgba(250,247,241,.85);padding:8px 12px;border:1px solid var(--stone);
+  z-index:2;
+}
+
+/* ---------- hero carousel ---------- */
+.carousel{position:absolute;inset:16px;overflow:hidden;}
+.carousel-track{display:flex;width:100%;height:100%;transition:transform .8s var(--ease);}
+.carousel-slide{position:relative;flex:0 0 100%;height:100%;}
+.carousel-slide img,.carousel-slide picture{width:100%;height:100%;object-fit:cover;display:block;}
+.banner-overlay{
+  position:absolute;left:20px;right:20px;bottom:54px;z-index:2;color:var(--on-dark);
+}
+.banner-overlay h3{font-size:1.4rem;margin-bottom:6px;text-shadow:0 2px 16px rgba(0,0,0,.5);}
+.banner-overlay p{font-size:.85rem;margin-bottom:14px;opacity:.9;text-shadow:0 2px 16px rgba(0,0,0,.5);}
+.carousel-dots{position:absolute;bottom:24px;right:24px;display:flex;gap:8px;z-index:2;}
+.carousel-dot{width:8px;height:8px;border-radius:50%;background:rgba(250,247,241,.55);border:1px solid var(--gold);padding:0;transition:.3s var(--ease);}
+.carousel-dot.active{background:var(--gold);width:22px;border-radius:4px;}
+.carousel-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;
+  background:rgba(250,247,241,.85);border:1px solid var(--stone);display:flex;align-items:center;justify-content:center;
+  z-index:2;transition:.3s var(--ease);
+}
+.carousel-arrow:hover{border-color:var(--gold);background:var(--gold-light);}
+.carousel-arrow.prev{left:14px;}
+.carousel-arrow.next{right:14px;}
+.hero-scroll{
+  position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.62rem;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--graphite);
+}
+.hero-scroll .line{width:1px;height:34px;background:var(--gold);animation:scrollpulse 2.2s infinite var(--ease);}
+@keyframes scrollpulse{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+
+/* ---------- trust strip ---------- */
+.trust{background:var(--onyx);color:var(--on-dark);padding:26px 0;}
+.trust .container{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;}
+.trust-item{display:flex;align-items:center;gap:12px;font-size:.78rem;letter-spacing:.02em;flex:1 1 200px;}
+.trust-item svg{flex-shrink:0;width:20px;height:20px;stroke:var(--gold);}
+
+/* ---------- section shell ---------- */
+section{padding:110px 0;}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:56px;flex-wrap:wrap;}
+.section-head h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:500;}
+.section-head p{color:var(--graphite);max-width:46ch;margin-top:12px;}
+
+/* ---------- catalog controls ---------- */
+.catalog-controls{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:44px;}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;}
+.tab{
+  padding:10px 20px;border:1px solid var(--stone);border-radius:999px;font-size:.75rem;
+  letter-spacing:.05em;font-weight:700;text-transform:uppercase;transition:.3s var(--ease);
+  color:var(--graphite);
+}
+.tab.active,.tab:hover{border-color:var(--gold);background:var(--gold-light);color:var(--ink);}
+.filters{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.filters input,.filters select{
+  border:1px solid var(--stone);background:var(--white);padding:10px 16px;font-size:.8rem;
+  border-radius:999px;font-family:inherit;color:var(--ink);
+}
+.filters input:focus,.filters select:focus{border-color:var(--gold);}
+
+.catalog-groups{display:flex;flex-direction:column;}
+.catalog-cat-group{margin-bottom:64px;}
+.catalog-cat-group:last-child{margin-bottom:0;}
+.catalog-cat-heading{display:flex;align-items:center;gap:16px;margin-bottom:30px;padding-bottom:16px;border-bottom:1px solid var(--stone);}
+.catalog-cat-heading svg{width:22px;height:22px;stroke:var(--gold-deep);flex-shrink:0;}
+.catalog-cat-heading h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;}
+.catalog-subgroup{margin-bottom:60px;}
+.catalog-subgroup:last-child{margin-bottom:0;}
+.catalog-subcat-heading{display:flex;align-items:center;gap:18px;margin-bottom:28px;}
+.catalog-subcat-heading h4{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;letter-spacing:0;text-transform:none;color:var(--gold-deep);white-space:nowrap;}
+.catalog-subcat-heading::after{content:'';flex:1;height:1px;background:var(--stone);}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:28px;}
+.card{
+  background:var(--white);border:1px solid var(--stone);border-radius:2px;overflow:hidden;
+  transition:transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease);
+  display:flex;flex-direction:column;
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--gold-light);}
+.card-media{
+  position:relative;aspect-ratio:1/1;
+  padding:10px;background:var(--white);
+}
+.card-media-frame{
+  position:relative;width:100%;height:100%;overflow:hidden;
+  background:linear-gradient(155deg,var(--ivory-deep),var(--stone));
+  box-shadow:inset 0 0 0 1px var(--stone);
+  display:flex;align-items:center;justify-content:center;
+}
+.card-media-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+.card-media .ring{width:56px;height:56px;border:1px solid var(--gold);border-radius:50%;opacity:.6;transition:transform .5s var(--ease);}
+.card:hover .card-media .ring{transform:scale(1.15) rotate(20deg);}
+.card-media .ph-caption{position:absolute;bottom:12px;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite);}
+.badges{position:absolute;top:20px;left:20px;display:flex;flex-direction:column;gap:6px;z-index:3;}
+.badge{
+  font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:5px 10px;
+  border-radius:999px;background:var(--onyx);color:var(--on-dark);
+}
+.badge.promo{background:var(--gold);color:var(--onyx);}
+.badge.new{background:var(--white);color:var(--ink);border:1px solid var(--ink);}
+.card-body{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1;}
+.card-cat{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;}
+.card-body h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:500;line-height:1.3;}
+.price-row{display:flex;align-items:baseline;gap:10px;margin-top:auto;}
+.price-old{font-size:.8rem;color:var(--graphite);text-decoration:line-through;}
+.price-new{font-size:1.15rem;font-weight:800;}
+.discount{font-size:.65rem;color:var(--gold-deep);font-weight:700;}
+.card-cta{display:flex;gap:8px;margin-top:14px;}
+.card-cta .btn{flex:1;justify-content:center;padding:11px 14px;font-size:.68rem;}
+.card-cta .quick{border:1px solid var(--stone);color:var(--graphite);flex:0 0 auto;padding:11px 14px;border-radius:999px;transition:.3s;}
+.card-cta .quick:hover{border-color:var(--gold);color:var(--ink);}
+.mini-carousel{position:relative;width:100%;height:100%;overflow:hidden;}
+.mini-track{display:flex;width:100%;height:100%;transition:transform .5s var(--ease);}
+.mini-slide{flex:0 0 100%;height:100%;}
+.mini-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.mini-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:2;}
+.mini-dot{width:6px;height:6px;border-radius:50%;background:rgba(250,247,241,.65);border:1px solid var(--gold);padding:0;transition:.3s var(--ease);}
+.mini-dot.active{background:var(--gold);width:16px;border-radius:3px;}
+.empty-state{display:none;text-align:center;padding:80px 20px;color:var(--graphite);}
+.empty-state.show{display:block;}
+.empty-state h3{font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:10px;color:var(--ink);}
+
+/* ---------- categories teaser ---------- */
+.cat-teaser{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.cat-card{
+  position:relative;aspect-ratio:16/11;background:linear-gradient(150deg,var(--onyx),#232019);
+  color:var(--on-dark);display:flex;flex-direction:column;justify-content:flex-end;padding:34px;
+  overflow:hidden;transition:.5s var(--ease);
+}
+.cat-card:nth-child(2){background:linear-gradient(150deg,var(--ivory-deep),var(--stone));color:var(--ink);}
+.cat-card:hover{transform:scale(1.01);}
+.cat-card .cat-eyebrow{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.cat-card:nth-child(2) .cat-eyebrow{color:var(--gold-deep);}
+.cat-card h3{font-family:'Fraunces',serif;font-size:1.9rem;margin-bottom:14px;}
+.cat-card a{font-size:.78rem;font-weight:700;letter-spacing:.05em;display:inline-flex;align-items:center;gap:8px;}
+
+/* ---------- about products ---------- */
+.about-products{background:var(--onyx);color:var(--on-dark);}
+.about-products .section-head h2, .about-products .section-head p{color:var(--on-dark);}
+.about-products .section-head p{color:#C8C2B4;}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(250,247,241,.14);}
+.feature{background:var(--onyx);padding:36px 30px;}
+.feature svg{stroke:var(--gold);width:26px;height:26px;margin-bottom:18px;}
+.feature h4{font-family:'Fraunces',serif;font-size:1.1rem;margin-bottom:10px;}
+.feature p{font-size:.86rem;color:#C8C2B4;line-height:1.7;}
+.warranty-note{margin-top:34px;font-size:.78rem;color:#9C968A;max-width:70ch;border-top:1px solid rgba(250,247,241,.15);padding-top:22px;}
+
+/* ---------- story (compacto) ---------- */
+.story-compact{display:flex;gap:44px;align-items:center;}
+.story-frame{width:220px;flex-shrink:0;background:var(--white);padding:12px;box-shadow:var(--shadow);}
+.story-photo{aspect-ratio:4/5;overflow:hidden;}
+.story-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.story-copy p{color:var(--graphite);line-height:1.8;font-size:.95rem;}
+
+/* ---------- reviews ---------- */
+.reviews{background:var(--ivory-deep);}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.review-card{background:var(--white);padding:30px;border:1px solid var(--stone);}
+.review-stars{color:var(--gold);letter-spacing:2px;margin-bottom:14px;font-size:.9rem;}
+.review-card p{font-size:.9rem;color:var(--graphite);line-height:1.7;margin-bottom:20px;font-style:italic;}
+.reviewer{display:flex;align-items:center;gap:12px;}
+.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(160deg,var(--gold-light),var(--stone));display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:.9rem;color:var(--gold-deep);}
+.reviewer .name{font-size:.82rem;font-weight:700;}
+.reviewer .since{font-size:.68rem;color:var(--graphite);}
+
+/* ---------- instagram ---------- */
+.insta-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:34px;}
+.insta-tile{aspect-ratio:1/1;background:linear-gradient(155deg,var(--ivory-deep),var(--gold-light));display:flex;align-items:center;justify-content:center;transition:.4s var(--ease);position:relative;overflow:hidden;}
+.insta-tile:hover{transform:scale(.96);}
+.insta-tile svg{width:22px;height:22px;stroke:var(--gold-deep);opacity:.7;}
+.insta-cta{text-align:center;}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+.contact-info .item{display:flex;gap:16px;padding:22px 0;border-bottom:1px solid var(--stone);}
+.contact-info .item svg{stroke:var(--gold-deep);width:22px;height:22px;flex-shrink:0;}
+.contact-info h4{font-size:.9rem;margin-bottom:4px;}
+.contact-info p{font-size:.85rem;color:var(--graphite);line-height:1.6;}
+.map-ph{margin-top:26px;aspect-ratio:16/9;background:linear-gradient(155deg,var(--ivory-deep),var(--stone));display:flex;align-items:center;justify-content:center;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite);}
+.form-field{margin-bottom:20px;}
+.form-field label{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:8px;color:var(--graphite);}
+.form-field input,.form-field textarea{
+  width:100%;border:1px solid var(--stone);background:var(--white);padding:14px 16px;font-family:inherit;
+  font-size:.9rem;border-radius:2px;transition:.3s;
+}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--gold);}
+.form-field textarea{resize:vertical;min-height:120px;}
+
+/* ---------- footer ---------- */
+footer{background:var(--onyx);color:#C8C2B4;padding:80px 0 30px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px;}
+.footer-grid p{font-size:.85rem;line-height:1.7;margin-top:14px;max-width:34ch;}
+.footer-col h5{color:var(--on-dark);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;}
+.footer-col li{margin-bottom:10px;font-size:.85rem;}
+.footer-col a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(250,247,241,.14);padding-top:26px;display:flex;justify-content:space-between;font-size:.75rem;flex-wrap:wrap;gap:10px;}
+
+/* ---------- toast ---------- */
+.toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);z-index:200;
+  background:var(--onyx);color:var(--on-dark);padding:14px 26px;border-radius:999px;font-size:.8rem;
+  display:flex;align-items:center;gap:10px;opacity:0;pointer-events:none;transition:.4s var(--ease);
+  border:1px solid var(--gold);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ---------- whatsapp float ---------- */
+.wa-float{
+  position:fixed;bottom:26px;right:26px;z-index:150;width:56px;height:56px;border-radius:50%;
+  background:var(--onyx);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);transition:.35s var(--ease);
+}
+.wa-float:hover{background:var(--gold);transform:translateY(-3px);}
+.wa-float svg{stroke:var(--gold);}
+.wa-float:hover svg{stroke:var(--onyx);}
+
+/* ---------- quick view modal ---------- */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(21,19,15,.55);backdrop-filter:blur(4px);z-index:300;
+  display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:.35s var(--ease);
+}
+.modal-overlay.show{opacity:1;pointer-events:auto;}
+.modal{
+  background:var(--ivory);max-width:820px;width:100%;max-height:88vh;overflow:auto;display:grid;
+  grid-template-columns:1fr 1fr;transform:translateY(20px);transition:.4s var(--ease);
+}
+.modal-overlay.show .modal{transform:translateY(0);}
+.modal-media{position:relative;background:var(--white);min-height:280px;padding:14px;}
+.modal-media-frame{position:relative;width:100%;height:100%;overflow:hidden;background:linear-gradient(155deg,var(--ivory-deep),var(--stone));box-shadow:inset 0 0 0 1px var(--stone);display:flex;align-items:center;justify-content:center;}
+.modal-media-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+.modal-media .ring{width:80px;height:80px;border:1px solid var(--gold);border-radius:50%;opacity:.6;}
+.modal-media .mini-dots{bottom:14px;}
+.modal-media .carousel-arrow{width:32px;height:32px;}
+.modal-media .carousel-arrow.prev{left:10px;}
+.modal-media .carousel-arrow.next{right:10px;}
+.modal-body{padding:38px;position:relative;}
+.modal-close{position:absolute;top:18px;right:18px;width:32px;height:32px;border-radius:50%;border:1px solid var(--stone);display:flex;align-items:center;justify-content:center;transition:.3s;}
+.modal-close:hover{border-color:var(--gold);}
+.modal-body .card-cat{margin-bottom:10px;}
+.modal-body h3{font-family:'Fraunces',serif;font-size:1.5rem;margin-bottom:14px;}
+.modal-body .desc{font-size:.9rem;color:var(--graphite);line-height:1.8;margin-bottom:22px;}
+.modal-body .meta{font-size:.75rem;color:var(--graphite);margin-bottom:18px;display:flex;gap:18px;flex-wrap:wrap;}
+.modal-body .price-row{margin-bottom:14px;}
+.color-select{margin-bottom:20px;}
+.color-select .color-label{font-size:.8rem;color:var(--graphite);display:block;margin-bottom:10px;}
+.color-select .color-label strong{color:var(--ink);}
+.swatches{display:flex;gap:10px;}
+.swatch{width:28px;height:28px;border-radius:50%;border:2px solid var(--stone);padding:0;transition:.3s var(--ease);}
+.swatch.active{border-color:var(--ink);box-shadow:0 0 0 2px var(--ivory),0 0 0 3px var(--gold);}
+.installment-select{margin-bottom:22px;}
+.installment-select label{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:8px;color:var(--graphite);}
+.installment-select select{
+  width:100%;border:1px solid var(--stone);background:var(--white);padding:12px 16px;font-family:inherit;
+  font-size:.85rem;border-radius:2px;color:var(--ink);transition:.3s;
+}
+.installment-select select:focus{border-color:var(--gold);}
+.installment-hint{font-size:.68rem;color:var(--graphite);margin-top:-6px;}
+
+/* ---------- admin: gatilho + login ---------- */
+.admin-auth-overlay{
+  position:fixed;inset:0;background:rgba(21,19,15,.55);backdrop-filter:blur(4px);z-index:600;
+  display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:.35s var(--ease);
+}
+.admin-auth-overlay.show{opacity:1;pointer-events:auto;}
+.admin-auth-card{
+  position:relative;background:var(--ivory);max-width:400px;width:100%;padding:40px;
+  transform:translateY(20px);transition:.4s var(--ease);box-shadow:var(--shadow);
+}
+.admin-auth-overlay.show .admin-auth-card{transform:translateY(0);}
+.admin-title{font-size:1.3rem;}
+.admin-sub{font-size:.85rem;color:var(--graphite);margin:8px 0 20px;}
+.admin-error{color:#c0503e;font-size:.8rem;min-height:1.2em;margin:8px 0;}
+.admin-link-btn{font-size:.78rem;font-weight:700;color:var(--gold-deep);text-decoration:underline;background:none;border:none;cursor:pointer;padding:0;margin-top:14px;}
+
+/* ---------- admin: app de página inteira ---------- */
+.admin-app{position:fixed;inset:0;z-index:500;display:none;background:var(--ivory);}
+body.admin-mode > *{display:none;}
+body.admin-mode > #adminApp{display:flex;}
+.admin-sidebar{width:230px;flex-shrink:0;background:var(--onyx);color:var(--on-dark);display:flex;flex-direction:column;padding:28px 0;}
+.admin-brand{padding:0 22px 22px;font-family:'Fraunces',serif;font-size:1.05rem;border-bottom:1px solid rgba(250,247,241,.15);margin-bottom:18px;}
+.admin-brand span{display:block;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:6px;font-family:'Manrope',sans-serif;font-weight:700;}
+.admin-nav{display:flex;flex-direction:column;gap:2px;flex:1;padding:0 12px;}
+.admin-nav-btn{padding:12px 14px;text-align:left;border-radius:6px;font-size:.85rem;font-weight:600;color:#C8C2B4;transition:.2s;width:100%;}
+.admin-nav-btn:hover{background:rgba(250,247,241,.08);color:var(--on-dark);}
+.admin-nav-btn.active{background:var(--gold);color:var(--onyx);}
+.admin-sidebar-footer{padding:12px 12px 0;display:flex;flex-direction:column;gap:2px;border-top:1px solid rgba(250,247,241,.15);margin-top:10px;padding-top:14px;}
+.admin-sidebar-footer .admin-nav-btn{color:#9C968A;font-size:.78rem;}
+.admin-logout-btn:hover{color:#e2a598;}
+.admin-main{flex:1;overflow-y:auto;padding:40px 48px;}
+
+/* ---------- admin: conteúdo reutilizável ---------- */
+.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:16px;flex-wrap:wrap;}
+.admin-back-btn{font-size:.78rem;font-weight:700;color:var(--gold-deep);background:none;border:none;cursor:pointer;padding:0;}
+.admin-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px;align-items:center;}
+.admin-toolbar input[type="text"],.admin-toolbar select{
+  border:1px solid var(--stone);background:var(--white);padding:9px 14px;font-size:.82rem;border-radius:999px;
+  font-family:inherit;color:var(--ink);
+}
+.admin-list{display:flex;flex-direction:column;gap:12px;max-width:760px;}
+.admin-row{display:flex;align-items:center;gap:16px;padding:14px;border:1px solid var(--stone);background:var(--white);}
+.admin-row-thumb{width:56px;height:56px;flex-shrink:0;overflow:hidden;background:var(--ivory-deep);display:flex;align-items:center;justify-content:center;}
+.admin-row-thumb img{width:100%;height:100%;object-fit:cover;}
+.admin-row-thumb svg{width:22px;height:22px;stroke:var(--gold-deep);}
+.admin-row-info{flex:1;display:flex;flex-direction:column;gap:4px;font-size:.85rem;min-width:0;}
+.admin-row-info span{font-size:.75rem;color:var(--graphite);}
+.admin-row-actions{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;}
+.admin-form{max-width:760px;}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;}
+.admin-fieldset{border:1px solid var(--stone);padding:22px;margin-bottom:22px;}
+.admin-fieldset legend{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--gold-deep);padding:0 8px;}
+.admin-checkbox-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-size:.85rem;}
+.admin-checkbox-row input{width:16px;height:16px;accent-color:var(--gold-deep);}
+.admin-form-actions{display:flex;gap:14px;margin-top:10px;}
+
+/* ---------- admin: variações ---------- */
+.admin-axis-toggles{display:flex;gap:22px;margin-bottom:18px;flex-wrap:wrap;}
+.admin-variant-row{border:1px solid var(--stone);background:var(--white);padding:14px;margin-bottom:10px;display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;}
+.admin-variant-field{display:flex;flex-direction:column;gap:5px;min-width:100px;}
+.admin-variant-field label{font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--graphite);font-weight:700;}
+.admin-variant-field input{border:1px solid var(--stone);padding:7px 9px;font-family:inherit;font-size:.8rem;border-radius:2px;width:100%;}
+.admin-variant-remove{margin-left:auto;width:28px;height:28px;border-radius:50%;border:1px solid var(--stone);color:var(--graphite);flex-shrink:0;}
+.admin-variant-remove:hover{border-color:#c0503e;color:#c0503e;}
+
+/* ---------- admin: uploader de imagens ---------- */
+.admin-uploader{margin-bottom:8px;}
+.admin-dropzone{
+  border:2px dashed var(--stone);padding:26px;text-align:center;font-size:.8rem;color:var(--graphite);
+  cursor:pointer;transition:.3s var(--ease);
+}
+.admin-dropzone.drag{border-color:var(--gold);background:var(--gold-light);}
+.admin-dropzone strong{color:var(--gold-deep);}
+.admin-thumb-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+.admin-thumb{position:relative;width:84px;height:84px;border:1px solid var(--stone);overflow:hidden;}
+.admin-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.admin-thumb .admin-thumb-tag{position:absolute;top:3px;left:3px;background:var(--onyx);color:var(--on-dark);font-size:.55rem;padding:2px 6px;border-radius:999px;letter-spacing:.05em;text-transform:uppercase;}
+.admin-thumb-controls{position:absolute;inset:0;background:rgba(21,19,15,.55);opacity:0;display:flex;align-items:center;justify-content:center;gap:4px;transition:.2s;}
+.admin-thumb:hover .admin-thumb-controls{opacity:1;}
+.admin-thumb-controls button{width:22px;height:22px;border-radius:50%;background:var(--ivory);color:var(--onyx);font-size:.65rem;display:flex;align-items:center;justify-content:center;}
+
+@media (max-width:900px){
+  .admin-app{flex-direction:column;}
+  .admin-sidebar{width:100%;flex-direction:row;align-items:center;padding:14px 16px;overflow-x:auto;}
+  .admin-brand{display:none;}
+  .admin-nav{flex-direction:row;padding:0;}
+  .admin-sidebar-footer{flex-direction:row;border-top:none;border-left:1px solid rgba(250,247,241,.15);margin:0 0 0 10px;padding:0 0 0 14px;}
+  .admin-main{padding:28px 20px;}
+  .admin-grid{grid-template-columns:1fr;}
+}
+
+/* ---------- mobile ---------- */
+@media (max-width:980px){
+  .hero .container{grid-template-columns:1fr;}
+  .hero-visual{order:-1;aspect-ratio:16/10;}
+  .story-compact{flex-direction:column;text-align:center;}
+  .story-frame{width:200px;}
+  .cat-teaser{grid-template-columns:1fr;}
+  .feature-grid{grid-template-columns:1fr;}
+  .review-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .insta-grid{grid-template-columns:repeat(3,1fr);}
+  .modal{grid-template-columns:1fr;}
+}
+@media (max-width:720px){
+  nav.main-nav, .header-actions .btn-whatsapp, .header-actions #adminTrigger{display:none;}
+  .menu-toggle{display:flex;}
+  .footer-grid{grid-template-columns:1fr;}
+}
+.mobile-nav{
+  position:fixed;top:0;right:0;bottom:0;width:min(320px,80vw);background:var(--ivory);z-index:200;
+  box-shadow:-20px 0 60px rgba(0,0,0,.15);transform:translateX(100%);transition:.4s var(--ease);
+  padding:100px 34px 34px;display:flex;flex-direction:column;gap:26px;
+}
+.mobile-nav.open{transform:translateX(0);}
+.mobile-nav a{font-size:1rem;font-weight:600;}
+.mobile-nav-close{position:absolute;top:24px;right:24px;width:34px;height:34px;border:1px solid var(--stone);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="siteHeader">
+  <div class="container">
+    <a href="#top" class="logo">
+      <img src="logo-jl-2.png" alt="Jéssica Laysa Acessórios" class="logo-img">
+    </a>
+    <nav class="main-nav">
+      <a href="#top">Início</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#produtos" data-cat="oculos" class="cat-link">Óculos</a>
+      <a href="#produtos" data-cat="semijoias" class="cat-link">Semi Joias</a>
+      <a href="#produtos" data-promo="1" class="cat-link">Promoções</a>
+      <a href="#sobre">Sobre Nós</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema claro/escuro">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a class="icon-btn" href="https://www.instagram.com/jessicalaysa_acessorios/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a class="btn btn-whatsapp btn-sm" href="https://wa.me/5531975749473" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <button class="btn btn-outline btn-sm" id="adminTrigger">Área Admin</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Fechar menu">✕</button>
+  <a href="#top">Início</a>
+  <a href="#produtos">Produtos</a>
+  <a href="#produtos" data-cat="oculos" class="cat-link">Óculos</a>
+  <a href="#produtos" data-cat="semijoias" class="cat-link">Semi Joias</a>
+  <a href="#sobre">Sobre Nós</a>
+  <a href="#contato">Contato</a>
+  <a href="https://wa.me/5531975749473" target="_blank" rel="noopener">Falar no WhatsApp</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-copy reveal in">
+      <span class="eyebrow">Curadoria em semi joias & óculos</span>
+      <h1 class="serif">Mais do que acessórios: uma <em>curadoria</em> de estilo, qualidade e confiança.</h1>
+      <p>Peças banhadas a ouro 18k, selecionadas uma a uma para acompanhar seus momentos — do brilho discreto do dia a dia à ocasião que pede algo especial.</p>
+      <div class="hero-btns">
+        <a href="#produtos" class="btn btn-gold">Ver Coleção</a>
+        <a href="https://wa.me/5531975749473" target="_blank" rel="noopener" class="btn btn-outline">Falar no WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal in">
+      <div class="frame bracket">
+        <div class="carousel" id="heroCarousel">
+          <div class="carousel-track" id="carouselTrack"></div>
+          <button class="carousel-arrow prev" id="carouselPrev" aria-label="Foto anterior">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel-arrow next" id="carouselNext" aria-label="Próxima foto">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+        <span class="caption">Jéssica Laysa Acessórios</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Role</span><span class="line"></span></div>
+</section>
+
+<!-- ================= CATEGORIAS TEASER ================= -->
+<section style="padding-top:60px;padding-bottom:60px;">
+  <div class="container">
+    <div class="cat-teaser reveal" id="catTeaser"></div>
+  </div>
+</section>
+
+<!-- ================= TRUST STRIP ================= -->
+<div class="trust">
+  <div class="container trust-item-wrap trust">
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>Banhado a ouro 18k</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4z"/></svg>Garantia de 1 ano</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 11.5a8.5 8.5 0 1 1-4.3-7.4L21 3l-1.1 4.3"/></svg>Atendimento humanizado</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>Envio cuidadoso</div>
+  </div>
+</div>
+
+<div class="thread-divider" id="thread1"><svg viewBox="0 0 1200 34" preserveAspectRatio="none"><path d="M0 17 Q 150 2, 300 17 T 600 17 T 900 17 T 1200 17"/></svg></div>
+
+<!-- ================= PRODUTOS ================= -->
+<section id="produtos">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Catálogo</span>
+        <h2 class="serif">Peças selecionadas para você</h2>
+        <p>Filtre por categoria, busque pelo nome ou ordene pelo que mais importa agora.</p>
+      </div>
+    </div>
+
+    <div class="catalog-controls reveal">
+      <div class="tabs" id="catTabs">
+        <button class="tab active" data-cat="todos">Todos</button>
+        <button class="tab" data-cat="semijoias">Semi Joias</button>
+        <button class="tab" data-cat="oculos">Óculos</button>
+      </div>
+      <div class="filters">
+        <input type="text" id="searchInput" placeholder="Pesquisar por nome…">
+        <select id="sortSelect">
+          <option value="recentes">Mais recentes</option>
+          <option value="maior">Maior preço</option>
+          <option value="menor">Menor preço</option>
+          <option value="vendidos">Mais vendidos</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="catalog-groups reveal" id="productGrid"></div>
+    <div class="empty-state" id="emptyState">
+      <h3 class="serif">Nenhuma peça encontrada</h3>
+      <p>Tente outro termo de busca ou volte para "Todos" para ver a coleção completa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOBRE OS PRODUTOS ================= -->
+<section class="about-products">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow" style="color:var(--gold);">Qualidade</span>
+        <h2 class="serif">Sobre nossos produtos</h2>
+        <p>Nossas peças são cuidadosamente selecionadas para oferecer beleza, qualidade e durabilidade. Trabalhamos com acessórios de excelente acabamento, todos banhados a ouro 18k e com uma camada de verniz que aumenta a durabilidade e o brilho da peça.</p>
+      </div>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="feature">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2l2.2 6.6H21l-5.4 4 2.1 6.6L12 15.8 6.3 19.2l2.1-6.6L3 8.6h6.8z"/></svg>
+        <h4 class="serif">Banhado a ouro 18k</h4>
+        <p>Acabamento nobre com brilho duradouro em cada peça da coleção.</p>
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+        <h4 class="serif">Garantia de 1 ano</h4>
+        <p>Cobertura contra defeitos de fabricação em todas as peças.</p>
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>
+        <h4 class="serif">Verniz protetor</h4>
+        <p>Camada extra que preserva o brilho e a durabilidade das peças.</p>
+      </div>
+    </div>
+    <p class="warranty-note reveal">A garantia não cobre danos causados por mau uso, contato com produtos químicos, perfumes, água do mar, piscina ou desgaste natural pelo uso.</p>
+  </div>
+</section>
+
+<div class="thread-divider" id="thread2"><svg viewBox="0 0 1200 34" preserveAspectRatio="none"><path d="M0 17 Q 150 32, 300 17 T 600 17 T 900 17 T 1200 17"/></svg></div>
+
+<!-- ================= SOBRE / HISTÓRIA ================= -->
+<section id="sobre">
+  <div class="container">
+    <div class="story-compact reveal">
+      <div class="story-frame bracket">
+        <div class="story-photo"><img src="foto-jessica.jpg" alt="Jéssica Laysa, fundadora da Jéssica Laysa Acessórios"></div>
+      </div>
+      <div class="story-copy">
+        <span class="eyebrow">Nossa História</span>
+        <h2 class="serif" style="font-size:1.7rem;margin:14px 0 16px;">Uma paixão que virou curadoria</h2>
+        <p>A paixão pelos acessórios sempre fez parte da minha história e foi ela que deu origem à Jéssica Laysa Acessórios. Acredito que uma peça bem escolhida tem o poder de valorizar a beleza, expressar a personalidade e acompanhar momentos especiais. Por isso, faço uma curadoria cuidadosa de acessórios que unem tendências, clássicos atemporais e qualidade premium, oferecendo às minhas clientes uma experiência baseada em confiança, honestidade, atendimento humanizado e peças que fazem a diferença em cada detalhe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AVALIAÇÕES ================= -->
+<section class="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Depoimentos</span>
+        <h2 class="serif">O que dizem nossas clientes</h2>
+      </div>
+    </div>
+    <div class="review-grid reveal">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"Comprei um conjunto para um casamento e recebi muitos elogios. O brilho é incrível e o atendimento foi super atencioso do início ao fim."</p>
+        <div class="reviewer"><div class="avatar serif">V</div><div><div class="name">Vitoria Dutra</div><div class="since">Cliente desde 2023</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"Já é a terceira peça que compro e todas mantiveram o brilho perfeitamente. Qualidade muito acima do que eu esperava pelo preço."</p>
+        <div class="reviewer"><div class="avatar serif">S</div><div><div class="name">Stella Maris</div><div class="since">Cliente desde 2022</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"O óculos solar superou minhas expectativas em acabamento. Atendimento pelo WhatsApp foi rápido e sem enrolação."</p>
+        <div class="reviewer"><div class="avatar serif">L</div><div><div class="name">Laiana Bacharel</div><div class="since">Cliente desde 2024</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INSTAGRAM ================= -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">@jessicalaysa_acessorios</span>
+        <h2 class="serif">Acompanhe no Instagram</h2>
+      </div>
+    </div>
+    <div class="insta-grid reveal">
+      <div class="insta-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      <div class="insta-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      <div class="insta-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      <div class="insta-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      <div class="insta-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+    </div>
+    <div class="insta-cta reveal">
+      <a class="btn btn-outline" href="https://www.instagram.com/jessicalaysa_acessorios/" target="_blank" rel="noopener">Seguir no Instagram</a>
+    </div>
+  </div>
+</section>
+
+<div class="thread-divider" id="thread3"><svg viewBox="0 0 1200 34" preserveAspectRatio="none"><path d="M0 17 Q 150 2, 300 17 T 600 17 T 900 17 T 1200 17"/></svg></div>
+
+<!-- ================= CONTATO ================= -->
+<section id="contato">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Fale com a gente</span>
+        <h2 class="serif">Contato</h2>
+      </div>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <div class="item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2h-4l-5 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <div><h4>WhatsApp</h4><p>+55 31 97574-9473 — atendimento e pedidos</p></div>
+        </div>
+        <div class="item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+          <div><h4>Instagram</h4><p>@jessicalaysa_acessorios</p></div>
+        </div>
+        <div class="item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <div><h4>Horário de atendimento</h4><p>Segunda a sexta, 9h às 18h · Sábado, 9h às 13h</p></div>
+        </div>
+        <div class="map-ph">Mapa da localização</div>
+      </div>
+      <form id="contactForm">
+        <div class="form-field"><label for="cName">Nome</label><input id="cName" type="text" required></div>
+        <div class="form-field"><label for="cEmail">E-mail</label><input id="cEmail" type="email" required></div>
+        <div class="form-field"><label for="cMsg">Mensagem</label><textarea id="cMsg" required></textarea></div>
+        <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;">Enviar mensagem</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo"><img src="logo-jl-2.png" alt="Jéssica Laysa Acessórios" class="footer-logo-img"></div>
+        <p>Curadoria de semi joias e óculos com qualidade premium, feita para valorizar sua beleza e seu estilo.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Links rápidos</h5>
+        <ul>
+          <li><a href="#top">Início</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#sobre">Sobre Nós</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Categorias</h5>
+        <ul>
+          <li><a href="#produtos" class="cat-link" data-cat="semijoias">Semi Joias</a></li>
+          <li><a href="#produtos" class="cat-link" data-cat="oculos">Óculos</a></li>
+          <li><a href="#produtos" class="cat-link" data-promo="1">Promoções</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Fale conosco</h5>
+        <ul>
+          <li><a href="https://wa.me/5531975749473" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/jessicalaysa_acessorios/" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Jéssica Laysa Acessórios. Todos os direitos reservados.</span>
+      <span>Feito com curadoria e cuidado.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5531975749473" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2h-4l-5 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</a>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-media"><div class="ring"></div></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="admin-auth-overlay" id="adminAuthOverlay">
+  <div class="admin-auth-card">
+    <button class="modal-close" id="adminAuthClose" aria-label="Fechar">✕</button>
+    <div id="adminAuthContent"></div>
+  </div>
+</div>
+
+<div class="admin-app" id="adminApp">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">Jéssica Laysa<span>Painel administrativo</span></div>
+    <nav class="admin-nav" id="adminNav">
+      <button class="admin-nav-btn active" data-view="produtos">Produtos</button>
+      <button class="admin-nav-btn" data-view="categorias">Categorias</button>
+      <button class="admin-nav-btn" data-view="banners">Carrossel</button>
+    </nav>
+    <div class="admin-sidebar-footer">
+      <button class="admin-nav-btn" id="adminExitBtn">← Voltar ao site</button>
+      <button class="admin-nav-btn admin-logout-btn" id="adminLogoutBtn">Sair</button>
+    </div>
+  </aside>
+  <main class="admin-main" id="adminMain"></main>
+
+  <div class="admin-auth-overlay" id="adminQuickCatOverlay">
+    <div class="admin-auth-card">
+      <button type="button" class="modal-close" id="adminQuickCatClose" aria-label="Fechar">✕</button>
+      <h3 class="serif admin-title">Nova categoria</h3>
+      <p class="admin-sub">Digite o nome da categoria.</p>
+      <form id="adminQuickCatForm">
+        <div class="form-field"><label for="quickCatName">Nome</label><input id="quickCatName" type="text" required autocomplete="off"></div>
+        <p class="admin-error" id="quickCatError"></p>
+        <div class="admin-form-actions">
+          <button type="submit" class="btn btn-gold">Criar categoria</button>
+          <button type="button" class="btn btn-outline" id="adminQuickCatCancel">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== tema claro/escuro ===== */
+const THEME_KEY = 'jl_theme';
+function applyTheme(theme){
+  document.documentElement.setAttribute('data-theme', theme);
+  const btn = document.getElementById('themeToggle');
+  btn.querySelector('.icon-sun').style.display = theme==='dark' ? 'block' : 'none';
+  btn.querySelector('.icon-moon').style.display = theme==='dark' ? 'none' : 'block';
+}
+applyTheme(document.documentElement.getAttribute('data-theme')==='dark' ? 'dark' : 'light');
+document.getElementById('themeToggle').addEventListener('click', ()=>{
+  const next = document.documentElement.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+  localStorage.setItem(THEME_KEY, next);
+  applyTheme(next);
+});
+
+/* ===== DADOS: categorias ===== */
+const DEFAULT_CATEGORIES = [
+  {id:"semijoias",name:"Semi Joias",img:"fotos produtos/pulseira 3.jpeg",desc:"Peças banhadas a ouro 18k, selecionadas uma a uma.",icon:"gem",order:1},
+  {id:"oculos",name:"Óculos",img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.55.jpeg",desc:"Óculos solares e de grau com curadoria própria.",icon:"glasses",order:2},
+];
+const CATEGORIES_KEY = 'jl_categories';
+function loadCategories(){
+  const saved = localStorage.getItem(CATEGORIES_KEY);
+  if(saved){ try{ return JSON.parse(saved); }catch(e){} }
+  return JSON.parse(JSON.stringify(DEFAULT_CATEGORIES));
+}
+function saveCategories(){
+  try{ localStorage.setItem(CATEGORIES_KEY, JSON.stringify(categories)); }
+  catch(e){ alert('Não foi possível salvar categorias: armazenamento cheio.'); }
+}
+let categories = loadCategories();
+function categoryName(id){ const c = categories.find(x=>x.id===id); return c ? c.name : id; }
+
+const CAT_ICONS = {
+  gem:'<path d="M12 2l2.2 6.6H21l-5.4 4 2.1 6.6L12 15.8 6.3 19.2l2.1-6.6L3 8.6h6.8z"/>',
+  glasses:'<circle cx="6" cy="14" r="4"/><circle cx="18" cy="14" r="4"/><path d="M10 14h4M2 12l2-6h2M22 12l-2-6h-2"/>',
+  heart:'<path d="M20 21v-2a4 4 0 0 0-3-3.87M4 21v-2a4 4 0 0 1 3-3.87M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>',
+  star:'<path d="M12 2l2.2 6.6H21l-5.4 4 2.1 6.6L12 15.8 6.3 19.2l2.1-6.6L3 8.6h6.8z"/>',
+  tag:'<path d="M20.59 13.41L11 3.83A2 2 0 0 0 9.5 3H4a1 1 0 0 0-1 1v5.5a2 2 0 0 0 .59 1.41l9.58 9.58a2 2 0 0 0 2.83 0l5.59-5.59a2 2 0 0 0 0-2.83z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
+};
+function iconSvg(key){
+  return `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">${CAT_ICONS[key]||CAT_ICONS.tag}</svg>`;
+}
+
+/* ===== DADOS: carrossel do topo (banners) ===== */
+const DEFAULT_BANNERS = [
+  {id:1,title:'',subtitle:'',imgDesktop:'Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.54 (4).jpeg',imgMobile:null,btnText:'',btnLink:'',order:1,active:true},
+  {id:2,title:'',subtitle:'',imgDesktop:'Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.54.jpeg',imgMobile:null,btnText:'',btnLink:'',order:2,active:true},
+  {id:3,title:'',subtitle:'',imgDesktop:'Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.56 (3).jpeg',imgMobile:null,btnText:'',btnLink:'',order:3,active:true},
+  {id:4,title:'',subtitle:'',imgDesktop:'Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.58 (3).jpeg',imgMobile:null,btnText:'',btnLink:'',order:4,active:true},
+  {id:5,title:'',subtitle:'',imgDesktop:'Fotos Oculos/WhatsApp Image 2026-07-31 at 15.00.00 (1).jpeg',imgMobile:null,btnText:'',btnLink:'',order:5,active:true},
+  {id:6,title:'',subtitle:'',imgDesktop:'Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.59 (1).jpeg',imgMobile:null,btnText:'',btnLink:'',order:6,active:true},
+];
+const BANNERS_KEY = 'jl_banners';
+function loadBanners(){
+  const saved = localStorage.getItem(BANNERS_KEY);
+  if(saved){ try{ return JSON.parse(saved); }catch(e){} }
+  return JSON.parse(JSON.stringify(DEFAULT_BANNERS));
+}
+function saveBanners(){
+  try{ localStorage.setItem(BANNERS_KEY, JSON.stringify(banners)); }
+  catch(e){ alert('Não foi possível salvar banners: armazenamento cheio.'); }
+}
+let banners = loadBanners();
+
+/* ===== DADOS DE PRODUTOS (exemplo — substituir pelo catálogo real / API) ===== */
+const DEFAULT_PRODUCTS = [
+  {id:1,name:"Brinco Argola Cristal Dourado",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-BR012",shortDesc:"Argola média cravejada, banhada a ouro 18k.",fullDesc:"Argola média banhada a ouro 18k com cravação de cristais, leve para o uso diário e com brilho que dura.",price:129.90,promo:89.90,stock:18,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:1,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:null,price:null,stock:null,sku:null}]},
+  {id:2,name:"Colar Ponto de Luz Zircônia",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL045",shortDesc:"Colar delicado com pingente de zircônia.",fullDesc:"Colar delicado com pingente de zircônia, corrente fininha banhada a ouro 18k. Peça coringa para qualquer look.",price:189.90,promo:null,stock:24,minStock:4,maxParcelas:null,featured:true,isLaunch:false,order:2,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:null,price:null,stock:null,sku:null}]},
+  {id:3,name:"Pulseira Coração Cravejada",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU019",shortDesc:"Pulseira ajustável com pingente de coração.",fullDesc:"Pulseira ajustável com pingente de coração cravejado, fecho reforçado e acabamento espelhado.",price:99.90,promo:74.90,stock:15,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:3,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:null,price:null,stock:null,sku:null}]},
+  {id:4,name:"Anel Solitário Banhado 18k",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-AN027",shortDesc:"Anel solitário minimalista banhado a ouro 18k.",fullDesc:"Anel solitário minimalista, ideal para compor com outras peças ou usar sozinho no dia a dia.",price:79.90,promo:null,stock:30,minStock:5,maxParcelas:null,featured:false,isLaunch:true,order:4,gallery:[],variantAxes:{color:true,size:true,model:false},variants:[{color:"Único",size:"16",model:null,img:null,price:null,stock:null,sku:null},{color:"Único",size:"18",model:null,img:null,price:null,stock:null,sku:null}]},
+  {id:5,name:"Conjunto Brinco e Colar Gota",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CJ003",shortDesc:"Conjunto em formato gota para ocasiões especiais.",fullDesc:"Conjunto completo em formato gota, perfeito para eventos e ocasiões especiais. Vem em embalagem para presente.",price:249.90,promo:199.90,stock:10,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:5,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:null,price:null,stock:null,sku:null}]},
+  {id:6,name:"Óculos Solar Redondo Clássico",cat:"oculos",brand:"Jéssica Laysa",sku:"JL-OS008",shortDesc:"Armação redonda com proteção UV400.",fullDesc:"Armação redonda com proteção UV400, lentes espelhadas e acabamento fosco premium.",price:159.90,promo:null,stock:14,minStock:3,maxParcelas:null,featured:false,isLaunch:true,order:6,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.59 (2).jpeg",price:null,stock:null,sku:null}]},
+  {id:7,name:"Óculos de Grau Retangular Fosco",cat:"oculos",brand:"Jéssica Laysa",sku:"JL-OG014",shortDesc:"Armação retangular leve para uso prolongado.",fullDesc:"Armação retangular leve, ideal para uso prolongado, com hastes flexíveis e acabamento fosco.",price:219.90,promo:null,stock:9,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:7,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.57 (2).jpeg",price:null,stock:null,sku:null}]},
+  {id:8,name:"Pulseira Berloque Trio",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU033",shortDesc:"Trio de pulseiras finas com berloques.",fullDesc:"Três pulseiras finas com berloques delicados, podem ser usadas juntas ou separadas.",price:119.90,promo:null,stock:20,minStock:3,maxParcelas:null,featured:true,isLaunch:false,order:8,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:null,price:null,stock:null,sku:null}]},
+  {id:9,name:"Óculos Vazado Retangular",cat:"oculos",brand:"Jéssica Laysa",sku:"JL-OS021",shortDesc:"Armação vazada, disponível em duas colorações.",fullDesc:"Armação vazada em metal dourado, hastes com detalhe em C e lentes degradê. Mesmo modelo disponível em duas colorações de lente.",price:189.90,promo:149.90,stock:11,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:9,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[
+    {color:"Âmbar",size:null,model:null,img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.59 (4).jpeg",price:null,stock:null,sku:null},
+    {color:"Fumê",size:null,model:null,img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 15.00.01 (1).jpeg",price:null,stock:null,sku:null}
+  ]},
+  {id:10,name:"Colar Veneziana Bolinha",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL050",shortDesc:"Colar fino com miçangas douradas espaçadas.",fullDesc:"Colar delicado em corrente fininha com miçangas douradas espaçadas ao longo da peça, banhado a ouro 18k. Combina com o dia a dia e também com produções mais elaboradas.",price:119.90,promo:null,stock:16,minStock:3,maxParcelas:null,featured:false,isLaunch:true,order:10,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/colar 1.jpeg",price:null,stock:null,sku:null}]},
+  {id:11,name:"Colar Bolinha Facetada",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL051",shortDesc:"Colar de bolinhas facetadas com brilho intenso.",fullDesc:"Colar composto por miçangas facetadas bem próximas, criando um efeito de brilho contínuo. Banhado a ouro 18k, com fecho reforçado.",price:149.90,promo:129.90,stock:12,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:11,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/colar 2.jpeg",price:null,stock:null,sku:null}]},
+  {id:12,name:"Colar Elo Cartier",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL052",shortDesc:"Colar de elos retangulares estilo Cartier.",fullDesc:"Colar com elos retangulares no clássico estilo Cartier, banhado a ouro 18k. Peça statement que valoriza qualquer decote.",price:159.90,promo:null,stock:14,minStock:3,maxParcelas:null,featured:true,isLaunch:false,order:12,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/colar 3.jpeg",price:null,stock:null,sku:null}]},
+  {id:13,name:"Colar Longo Correntinha com Esferas",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL053",shortDesc:"Colar longo com esferas douradas espaçadas.",fullDesc:"Colar longo em corrente fina com esferas douradas espaçadas ao longo da peça. Ideal para compor looks em camadas ou usar sozinho.",price:129.90,promo:null,stock:18,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:13,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/colar 4.jpeg",price:null,stock:null,sku:null}]},
+  {id:14,name:"Colar Elos Coração",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL054",shortDesc:"Colar de elos em formato de coração.",fullDesc:"Colar formado por elos entrelaçados em formato de coração, banhado a ouro 18k. Peça delicada e romântica para o dia a dia.",price:139.90,promo:null,stock:15,minStock:3,maxParcelas:null,featured:false,isLaunch:true,order:14,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/coalr 5.jpeg",price:null,stock:null,sku:null}]},
+  {id:15,name:"Colar Cruzes Pingentes",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL055",shortDesc:"Colar com pingentes de cruz ao longo da corrente.",fullDesc:"Colar delicado com diversos pingentes de cruz distribuídos ao longo da corrente, banhado a ouro 18k. Peça versátil com toque simbólico.",price:109.90,promo:89.90,stock:13,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:15,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/colar 6.jpeg",price:null,stock:null,sku:null}]},
+  {id:16,name:"Pulseira Tênis Cristais",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU040",shortDesc:"Pulseira tênis com cristais ovais.",fullDesc:"Pulseira estilo tênis com cristais ovais cravejados um a um, banhada a ouro 18k. Um clássico atemporal para elevar qualquer produção.",price:179.90,promo:null,stock:9,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:16,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/pulseira 1.jpeg",price:null,stock:null,sku:null}]},
+  {id:17,name:"Pulseira Esferas",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU041",shortDesc:"Pulseira fina com esferas douradas.",fullDesc:"Pulseira em corrente fina com esferas douradas dispostas ao longo da peça, banhada a ouro 18k. Leve para o uso diário.",price:99.90,promo:null,stock:20,minStock:4,maxParcelas:null,featured:false,isLaunch:false,order:17,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/pulseira 2.jpeg",price:null,stock:null,sku:null}]},
+  {id:18,name:"Colar Riviera Cravejado",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL060",shortDesc:"Colar riviera cravejado em formato de corações.",fullDesc:"Colar riviera com cravação em formato de corações do início ao fim, banhado a ouro 18k. Peça statement para ocasiões especiais.",price:299.90,promo:249.90,stock:6,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:18,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/pulseira 3.jpeg",price:null,stock:null,sku:null}]},
+  {id:19,name:"Conjunto Borboleta Cravejado",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CJ010",shortDesc:"Conjunto colar e brinco borboleta cravejados.",fullDesc:"Conjunto composto por colar e brincos em formato de borboleta, totalmente cravejados em zircônias, banhado a ouro 18k. Peça statement para ocasiões especiais.",price:219.90,promo:189.90,stock:8,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:19,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.57.58.jpeg",price:null,stock:null,sku:null}]},
+  {id:20,name:"Conjunto Coração Pérola",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CJ011",shortDesc:"Conjunto colar e brinco coração com pérola.",fullDesc:"Conjunto composto por colar e brincos em formato de coração, com pérola ao centro cercada de cristais, banhado a ouro 18k.",price:199.90,promo:null,stock:10,minStock:2,maxParcelas:null,featured:false,isLaunch:true,order:20,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.57.59.jpeg",price:null,stock:null,sku:null}]},
+  {id:21,name:"Brinco Cruz Cravejada",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-BR020",shortDesc:"Brinco pendente de cruz cravejada.",fullDesc:"Brinco pendente em formato de cruz cravejada, banhado a ouro 18k. Combina com o uso empilhado com outros brincos.",price:89.90,promo:null,stock:16,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:21,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.57.59 (1).jpeg",price:null,stock:null,sku:null}]},
+  {id:22,name:"Brinco Folha Pendurada",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-BR021",shortDesc:"Brinco pendente em formato de folha.",fullDesc:"Brinco pendente em formato de folha, acabamento texturizado, banhado a ouro 18k. Leve para o uso diário.",price:79.90,promo:null,stock:14,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:22,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.57.59 (2).jpeg",price:null,stock:null,sku:null}]},
+  {id:23,name:"Anel Ajustável Bolinha",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-AN030",shortDesc:"Anel ajustável com detalhe de bolinha.",fullDesc:"Anel fino ajustável com detalhe de bolinha nas pontas, banhado a ouro 18k. Serve em qualquer tamanho de dedo.",price:69.90,promo:null,stock:22,minStock:4,maxParcelas:null,featured:false,isLaunch:false,order:23,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.00 (1).jpeg",price:null,stock:null,sku:null}]},
+  {id:24,name:"Anel Filigrana",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-AN031",shortDesc:"Anel largo com filigrana vazada.",fullDesc:"Anel largo com trabalho de filigrana vazada em formato floral. Peça statement com acabamento premium.",price:99.90,promo:null,stock:11,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:24,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.00 (2).jpeg",price:null,stock:null,sku:null}]},
+  {id:25,name:"Anel Aliança Cristais Coloridos",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-AN032",shortDesc:"Aliança fina com cristais coloridos.",fullDesc:"Aliança fina cravejada com cristais coloridos em corte baguete, banhada a ouro 18k. Combina sozinha ou empilhada.",price:109.90,promo:89.90,stock:13,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:25,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.00 (3).jpeg",price:null,stock:null,sku:null}]},
+  {id:26,name:"Anel Halo Cristal Colorido",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-AN033",shortDesc:"Anel gota com halo de cristais coloridos.",fullDesc:"Anel em formato gota com cristal central rodeado por halo de cristais coloridos, banhado a ouro 18k.",price:119.90,promo:null,stock:9,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:26,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.01.jpeg",price:null,stock:null,sku:null}]},
+  {id:27,name:"Pulseira Coração Cristal",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU050",shortDesc:"Pulseira elo grosso com pingente de coração cristal.",fullDesc:"Pulseira de elo grosso com pingente de coração liso e charm de coração cristalizado, banhada a ouro 18k. Mesmo modelo disponível em duas cores de cristal.",price:99.90,promo:null,stock:14,minStock:3,maxParcelas:null,featured:false,isLaunch:true,order:27,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[
+    {color:"Rosa",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.01 (1).jpeg",price:null,stock:null,sku:null},
+    {color:"Azul",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.01 (2).jpeg",price:null,stock:null,sku:null}
+  ]},
+  {id:28,name:"Conjunto Coração Dourado",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CJ012",shortDesc:"Conjunto colar e brinco coração abaulado.",fullDesc:"Conjunto composto por colar e brincos em formato de coração abaulado, acabamento liso e brilhante, banhado a ouro 18k.",price:169.90,promo:null,stock:12,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:28,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.01 (3).jpeg",price:null,stock:null,sku:null}]},
+  {id:29,name:"Pulseira Dupla Borboleta",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU051",shortDesc:"Pulseira dupla com pingente de borboleta.",fullDesc:"Pulseira composta por duas correntes sobrepostas com charm de borboleta, banhada a ouro 18k.",price:109.90,promo:null,stock:15,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:29,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.01 (4).jpeg",price:null,stock:null,sku:null}]},
+  {id:30,name:"Pulseira Tripla Medalhas",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU052",shortDesc:"Pulseira tripla com medalhas gravadas.",fullDesc:"Pulseira composta por três correntes finas sobrepostas com medalhas gravadas, banhada a ouro 18k.",price:119.90,promo:null,stock:10,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:30,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.02.jpeg",price:null,stock:null,sku:null}]},
+  {id:31,name:"Kit 5 Anéis Sobrepostos",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-AN034",shortDesc:"Kit com 5 anéis para usar sobrepostos.",fullDesc:"Kit com 5 anéis de desenhos variados (cruz, cristais e lisos) para usar sobrepostos ou separados, banhados a ouro 18k.",price:149.90,promo:129.90,stock:9,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:31,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.14.jpeg",price:null,stock:null,sku:null}]},
+  {id:32,name:"Brinco Flor Vazada Pendurada",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-BR022",shortDesc:"Brinco pendente em formato de flor vazada.",fullDesc:"Brinco pendente em formato de flor vazada, com cristal na parte superior, banhado a ouro 18k. Peça statement e leve.",price:99.90,promo:null,stock:12,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:32,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.18.jpeg",price:null,stock:null,sku:null}]},
+  {id:33,name:"Colar Medalha Nossa Senhora das Graças",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL070",shortDesc:"Colar com medalha de Nossa Senhora das Graças.",fullDesc:"Colar com pingente de medalha oval de Nossa Senhora das Graças cravejada, corrente fininha banhada. Peça delicada com toque simbólico.",price:99.90,promo:null,stock:14,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:33,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.25.jpeg",price:null,stock:null,sku:null}]},
+  {id:34,name:"Colar Longo Pérolas",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL071",shortDesc:"Colar longo com pérolas espaçadas.",fullDesc:"Colar longo com pérolas naturais espaçadas ao longo da corrente, banhado a ouro 18k. Pode ser usado duplo ou solto.",price:169.90,promo:null,stock:8,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:34,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.27.jpeg",price:null,stock:null,sku:null}]},
+  {id:35,name:"Pulseira Medalhas Trio",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU053",shortDesc:"Pulseira com trio de medalhas pendentes.",fullDesc:"Pulseira em corrente fina com três medalhas gravadas pendentes, banhada a ouro 18k.",price:99.90,promo:null,stock:13,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:35,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.28.jpeg",price:null,stock:null,sku:null}]},
+  {id:36,name:"Colar Multi Pingente Cravejado",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL072",shortDesc:"Colar com quatro pingentes cravejados.",fullDesc:"Colar com quatro pingentes cravejados (coração, ponto de luz, cruz e trevo), banhado a ouro 18k. Peça statement cheia de significado.",price:159.90,promo:139.90,stock:10,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:36,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.29.jpeg",price:null,stock:null,sku:null}]},
+  {id:37,name:"Colar Placa Símbolo",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL073",shortDesc:"Colar com placa gravada, símbolo à escolha.",fullDesc:"Colar com pingente em formato de placa retangular gravada, banhado a ouro 18k. Disponível com símbolo de Estrela de Davi ou Cruz.",price:109.90,promo:null,stock:11,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:37,gallery:[],variantAxes:{color:false,size:false,model:true},variants:[
+    {color:null,size:null,model:"Estrela de Davi",img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.30.jpeg",price:null,stock:null,sku:null},
+    {color:null,size:null,model:"Cruz",img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.30.jpeg",price:null,stock:null,sku:null}
+  ]},
+  {id:38,name:"Colar Medalhão Abre e Fecha",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL074",shortDesc:"Colar medalhão oval que abre e fecha.",fullDesc:"Colar com pingente medalhão oval que abre e fecha, ideal para guardar uma foto ou dedicatória. Banhado a ouro 18k.",price:129.90,promo:null,stock:9,minStock:2,maxParcelas:null,featured:false,isLaunch:true,order:38,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.30 (1).jpeg",price:null,stock:null,sku:null}]},
+  {id:39,name:"Colar Medalha Nossa Senhora Aparecida",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL075",shortDesc:"Colar com medalha de Nossa Senhora Aparecida.",fullDesc:"Colar com pingente de medalha oval de Nossa Senhora Aparecida, detalhe cravejado, banhado a ouro 18k. Peça delicada com toque simbólico.",price:109.90,promo:null,stock:12,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:39,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.30 (2).jpeg",price:null,stock:null,sku:null}]},
+];
+
+const PRODUCTS_KEY = 'jl_products';
+function loadProducts(){
+  const saved = localStorage.getItem(PRODUCTS_KEY);
+  if(saved){
+    try{ return JSON.parse(saved); }catch(e){ /* dados corrompidos: cai no padrão */ }
+  }
+  return JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+}
+function saveProducts(){
+  try{ localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products)); }
+  catch(e){ alert('Não foi possível salvar: armazenamento do navegador cheio. Tente usar fotos menores ou remover produtos antigos.'); }
+}
+function normalizeProduct(p){
+  if(!p.variantAxes) p.variantAxes = {color:true,size:false,model:false};
+  if(!Array.isArray(p.variants) || !p.variants.length){
+    if(Array.isArray(p.colors) && p.colors.length){
+      p.variants = p.colors.map(c=>({color:c.name||'Único',size:null,model:null,img:c.img||null,price:null,stock:null,sku:null}));
+    }else{
+      p.variants = [{color:'Único',size:null,model:null,img:p.img||null,price:null,stock:null,sku:null}];
+    }
+  }
+  if(p.gallery==null) p.gallery = [];
+  if(p.brand==null) p.brand = 'Jéssica Laysa';
+  if(p.sku==null) p.sku = p.code || '';
+  if(p.shortDesc==null) p.shortDesc = p.desc || '';
+  if(p.fullDesc==null) p.fullDesc = p.desc || p.shortDesc || '';
+  if(p.featured==null) p.featured = false;
+  if(p.isLaunch==null) p.isLaunch = false;
+  if(p.maxParcelas===undefined) p.maxParcelas = null;
+  if(p.order==null) p.order = p.id || 0;
+  return p;
+}
+let products = loadProducts().map(normalizeProduct);
+saveProducts();
+(function mergeNewDefaultProducts(){
+  let changed = false;
+  DEFAULT_PRODUCTS.forEach(dp=>{
+    const existing = products.find(p=>p.id===dp.id);
+    if(!existing){
+      products.push(JSON.parse(JSON.stringify(dp)));
+      changed = true;
+    }else{
+      dp.variants.forEach((dv,i)=>{
+        if(dv.img && existing.variants[i] && !existing.variants[i].img){
+          existing.variants[i].img = dv.img;
+          changed = true;
+        }
+      });
+    }
+  });
+  if(changed) saveProducts();
+})();
+
+const grid = document.getElementById('productGrid');
+const emptyState = document.getElementById('emptyState');
+let state = { cat:'todos', search:'', sort:'recentes', promoOnly:false };
+
+function formatPrice(v){ return v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+function getBadge(p){
+  if(p.promo) return {cls:'badge promo',text:'Promoção'};
+  if(p.isLaunch) return {cls:'badge new',text:'Novidade'};
+  if(p.featured) return {cls:'badge',text:'Destaque'};
+  return null;
+}
+
+function maxInstallments(price){
+  return Math.max(1, Math.min(12, Math.floor(price/30)));
+}
+function getMaxInstallments(p){
+  return p.maxParcelas || maxInstallments(p.promo ?? p.price);
+}
+
+function installmentLabel(price, n){
+  return n<=1 ? `À vista - R$ ${formatPrice(price)}` : `${n}x de R$ ${formatPrice(price/n)} sem juros`;
+}
+
+/* ===== variações (cor / tamanho / modelo) ===== */
+function variantLabel(v){
+  return [v.color,v.size,v.model].filter(Boolean).join(' · ') || 'Único';
+}
+function variantEffectivePrice(p, v){ return v && v.price!=null ? v.price : (p.promo ?? p.price); }
+function variantEffectiveOldPrice(p, v){ return v && v.price!=null ? null : (p.promo ? p.price : null); }
+function variantEffectiveStock(p, v){ return v && v.stock!=null ? v.stock : p.stock; }
+function variantEffectiveSku(p, v){ return (v && v.sku) ? v.sku : p.sku; }
+function variantEffectiveImg(p, v){ return (v && v.img) || p.gallery?.[0] || null; }
+function findVariant(p, sel){
+  return p.variants.find(v=>
+    (!p.variantAxes.color || v.color===sel.color) &&
+    (!p.variantAxes.size || v.size===sel.size) &&
+    (!p.variantAxes.model || v.model===sel.model)
+  ) || p.variants[0];
+}
+function distinctAxisValues(p, axis){
+  return [...new Set(p.variants.map(v=>v[axis]).filter(Boolean))];
+}
+
+function buildWaMessage(p, variant, installments){
+  const price = variantEffectivePrice(p, variant);
+  const productUrl = location.href.split('#')[0] + '#produto-' + p.id;
+  const valorTxt = installments<=1
+    ? `à vista, R$ ${formatPrice(price)}`
+    : `em ${installments}x de R$ ${formatPrice(price/installments)} sem juros (total R$ ${formatPrice(price)})`;
+  const variacaoTxt = variant && variantLabel(variant)!=='Único' ? ` (${variantLabel(variant)})` : '';
+  const skuTxt = variantEffectiveSku(p, variant) ? `\nCódigo: ${variantEffectiveSku(p, variant)}` : '';
+  return `Olá! Tenho interesse na peça *${p.name}*${variacaoTxt}, ${valorTxt}.${skuTxt}\nLink do produto: ${productUrl}`;
+}
+
+function waLink(p, variant, installments){
+  const msg = buildWaMessage(p, variant ?? p.variants[0], installments ?? 1);
+  return `https://wa.me/5531975749473?text=${encodeURIComponent(msg)}`;
+}
+
+function renderCatTabs(){
+  const tabsWrap = document.getElementById('catTabs');
+  tabsWrap.innerHTML = `<button class="tab${state.cat==='todos'?' active':''}" data-cat="todos">Todos</button>` +
+    categories.slice().sort((a,b)=>a.order-b.order).map(c=>`<button class="tab${state.cat===c.id?' active':''}" data-cat="${c.id}">${c.name}</button>`).join('');
+}
+
+/* ===== subcategorias (agrupamento visual do catálogo) ===== */
+const SUBCAT_RULES = [
+  {key:'conjuntos', label:'Conjuntos', cat:'semijoias', order:1, test:n=>/conjunto/i.test(n)},
+  {key:'colares', label:'Colares', cat:'semijoias', order:2, test:n=>/colar/i.test(n)},
+  {key:'brincos', label:'Brincos', cat:'semijoias', order:3, test:n=>/brinco/i.test(n)},
+  {key:'pulseiras', label:'Pulseiras', cat:'semijoias', order:4, test:n=>/pulseira/i.test(n)},
+  {key:'aneis', label:'Anéis', cat:'semijoias', order:5, test:n=>/anel|anéis|aliança/i.test(n)},
+  {key:'oculos-grau', label:'Óculos de Grau', cat:'oculos', order:1, test:n=>/grau/i.test(n)},
+  {key:'oculos-sol', label:'Óculos de Sol', cat:'oculos', order:2, test:()=>true},
+];
+function getSubcat(p){
+  const rules = SUBCAT_RULES.filter(r=>r.cat===p.cat);
+  if(!rules.length) return {key:'geral', label:null, order:0};
+  return rules.find(r=>r.test(p.name)) || {key:p.cat+'-outros', label:'Outros', order:99};
+}
+
+function buildCard(p){
+  const badge = getBadge(p);
+  const price = p.promo ?? p.price;
+  const discount = p.promo ? Math.round(100-(p.promo/p.price*100)) : null;
+  const colorVariants = p.variantAxes.color ? [...new Map(p.variants.map(v=>[v.color,v])).values()].filter(v=>v.img) : [];
+  const galleryPhotos = (p.gallery||[]).filter(Boolean);
+  const hasColorCarousel = colorVariants.length>1;
+  const hasGalleryCarousel = !hasColorCarousel && galleryPhotos.length>1;
+  const carouselType = hasColorCarousel ? 'color' : (hasGalleryCarousel ? 'gallery' : null);
+  const carouselItems = hasColorCarousel
+    ? colorVariants.map(v=>({img:v.img,label:v.color}))
+    : (hasGalleryCarousel ? galleryPhotos.map((img,i)=>({img,label:`Foto ${i+1}`})) : []);
+  const thumb = galleryPhotos[0] || p.variants[0]?.img || null;
+  const outOfStock = p.stock!=null && p.stock<=0;
+  const lowStock = !outOfStock && p.stock!=null && p.minStock!=null && p.stock<=p.minStock;
+  const card = document.createElement('div');
+  card.className='card';
+  card.id = 'produto-'+p.id;
+  card.innerHTML = `
+    <div class="card-media">
+      <div class="badges">
+        ${badge?`<span class="${badge.cls}">${badge.text}</span>`:''}
+        ${outOfStock?`<span class="badge" style="background:var(--graphite);">Esgotado</span>`:(lowStock?`<span class="badge" style="background:var(--graphite);">Últimas unidades</span>`:'')}
+      </div>
+      <div class="card-media-frame bracket">
+        ${carouselItems.length ? `
+          <div class="mini-carousel" data-pid="${p.id}" data-type="${carouselType}">
+            <div class="mini-track">
+              ${carouselItems.map(it=>`<div class="mini-slide"><img src="${it.img}" alt="${p.name} - ${it.label}" loading="lazy"></div>`).join('')}
+            </div>
+            <div class="mini-dots">
+              ${carouselItems.map((it,i)=>`<button class="mini-dot${i===0?' active':''}" data-idx="${i}" aria-label="${it.label}" title="${it.label}"></button>`).join('')}
+            </div>
+          </div>`
+        : (thumb?`<img src="${thumb}" alt="${p.name}" loading="lazy">`:`<div class="ring"></div><span class="ph-caption">Foto do produto</span>`)}
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="card-cat">${categoryName(p.cat)}${p.sku?` · ${p.sku}`:''}</span>
+      <h3 class="serif">${p.name}</h3>
+      <div class="price-row">
+        ${p.promo?`<span class="price-old">R$ ${formatPrice(p.price)}</span>`:''}
+        <span class="price-new">R$ ${formatPrice(price)}</span>
+        ${discount?`<span class="discount">-${discount}%</span>`:''}
+      </div>
+      <span class="installment-hint">até ${getMaxInstallments(p)}x sem juros</span>
+      <div class="card-cta">
+        <button class="btn btn-gold buy-btn" data-id="${p.id}" ${outOfStock?'disabled style="opacity:.5;cursor:not-allowed;"':''}>${outOfStock?'Esgotado':'Comprar'}</button>
+        <button class="quick" data-id="${p.id}" aria-label="Visualização rápida">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+      </div>
+    </div>`;
+  return card;
+}
+
+function render(){
+  renderCatTabs();
+  let list = products.filter(p=>{
+    if(state.cat!=='todos' && p.cat!==state.cat) return false;
+    if(state.promoOnly && !p.promo) return false;
+    if(state.search && !p.name.toLowerCase().includes(state.search.toLowerCase())) return false;
+    return true;
+  });
+  if(state.sort==='maior') list.sort((a,b)=>(b.promo??b.price)-(a.promo??a.price));
+  if(state.sort==='menor') list.sort((a,b)=>(a.promo??a.price)-(b.promo??b.price));
+  if(state.sort==='vendidos') list.sort((a,b)=>(b.featured-a.featured));
+  if(state.sort==='recentes') list.sort((a,b)=>b.order-a.order);
+
+  grid.innerHTML='';
+  emptyState.classList.toggle('show', list.length===0);
+  cardVariantIndex = {};
+
+  const catsToShow = state.cat==='todos'
+    ? categories.slice().sort((a,b)=>a.order-b.order)
+    : categories.filter(c=>c.id===state.cat);
+
+  catsToShow.forEach(cat=>{
+    const catProducts = list.filter(p=>p.cat===cat.id);
+    if(!catProducts.length) return;
+
+    const groupsMap = new Map();
+    catProducts.forEach(p=>{
+      const s = getSubcat(p);
+      if(!groupsMap.has(s.key)) groupsMap.set(s.key, {label:s.label, order:s.order, items:[]});
+      groupsMap.get(s.key).items.push(p);
+    });
+    const groups = [...groupsMap.values()].sort((a,b)=>a.order-b.order);
+
+    const catSection = document.createElement('div');
+    catSection.className = 'catalog-cat-group';
+    catSection.innerHTML = `<div class="catalog-cat-heading">${iconSvg(cat.icon||'tag')}<h3 class="serif">${cat.name}</h3></div>`;
+
+    groups.forEach(g=>{
+      const subWrap = document.createElement('div');
+      subWrap.className = 'catalog-subgroup';
+      subWrap.innerHTML = (g.label ? `<div class="catalog-subcat-heading"><h4>${g.label}</h4></div>` : '') + `<div class="product-grid"></div>`;
+      const subGrid = subWrap.querySelector('.product-grid');
+      g.items.forEach(p=>subGrid.appendChild(buildCard(p)));
+      catSection.appendChild(subWrap);
+    });
+
+    grid.appendChild(catSection);
+  });
+
+  document.querySelectorAll('.mini-carousel').forEach(mc=>{
+    const pid = Number(mc.dataset.pid);
+    const type = mc.dataset.type;
+    const track = mc.querySelector('.mini-track');
+    mc.querySelectorAll('.mini-dot').forEach(dot=>{
+      dot.addEventListener('click', e=>{
+        e.stopPropagation();
+        const idx = Number(dot.dataset.idx);
+        track.style.transform = `translateX(-${idx*100}%)`;
+        mc.querySelectorAll('.mini-dot').forEach((d,i)=>d.classList.toggle('active', i===idx));
+        cardVariantIndex[pid] = {type, idx};
+      });
+    });
+  });
+
+  document.querySelectorAll('.quick').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const pid = Number(btn.dataset.id);
+      const cv = cardVariantIndex[pid];
+      openModal(pid, {colorIdx: cv&&cv.type==='color'?cv.idx:0, photoIdx: cv&&cv.type==='gallery'?cv.idx:0});
+    });
+  });
+  document.querySelectorAll('.buy-btn').forEach(btn=>{
+    if(btn.disabled) return;
+    btn.addEventListener('click', ()=>{
+      const pid = Number(btn.dataset.id);
+      const cv = cardVariantIndex[pid];
+      openModal(pid, {colorIdx: cv&&cv.type==='color'?cv.idx:0, photoIdx: cv&&cv.type==='gallery'?cv.idx:0});
+    });
+  });
+
+  document.getElementById('catTabs').querySelectorAll('.tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      state.cat = btn.dataset.cat;
+      state.promoOnly = false;
+      render();
+    });
+  });
+}
+
+let cardVariantIndex = {};
+
+/* ===== filtros / busca / ordenação ===== */
+document.getElementById('searchInput').addEventListener('input', e=>{ state.search=e.target.value; render(); });
+document.getElementById('sortSelect').addEventListener('change', e=>{ state.sort=e.target.value; render(); });
+
+function handleCatLinkClick(a){
+  const cat = a.dataset.cat;
+  const promo = a.dataset.promo;
+  if(promo){ state.promoOnly=true; state.cat='todos'; }
+  else if(cat){ state.cat=cat; state.promoOnly=false; }
+  render();
+  closeMobileNav();
+}
+document.querySelectorAll('.cat-link').forEach(a=>{
+  a.addEventListener('click', ()=>handleCatLinkClick(a));
+});
+
+function renderCatTeaser(){
+  const wrap = document.getElementById('catTeaser');
+  const sorted = categories.slice().sort((a,b)=>a.order-b.order);
+  wrap.innerHTML = sorted.map(c=>{
+    const style = c.img
+      ? `style="background:linear-gradient(150deg, rgba(21,19,15,.78), rgba(21,19,15,.32)), url('${c.img}') center/cover no-repeat; color:var(--on-dark);"`
+      : '';
+    const eyebrowStyle = c.img ? 'style="color:var(--gold);"' : '';
+    return `
+      <div class="cat-card" ${style}>
+        <span class="cat-eyebrow" ${eyebrowStyle}>Coleção</span>
+        <h3 class="serif">${c.name}</h3>
+        <a href="#produtos" class="cat-link" data-cat="${c.id}">Ver peças →</a>
+      </div>`;
+  }).join('');
+  wrap.querySelectorAll('.cat-link').forEach(a=>a.addEventListener('click', ()=>handleCatLinkClick(a)));
+}
+renderCatTeaser();
+
+/* ===== quick view / compra modal ===== */
+const modalOverlay = document.getElementById('modalOverlay');
+const modalBody = document.getElementById('modalBody');
+let modalState = { productId:null, sel:{color:null,size:null,model:null}, installments:1 };
+
+function renderModalBody(p){
+  const variant = findVariant(p, modalState.sel);
+  const price = variantEffectivePrice(p, variant);
+  const oldPrice = variantEffectiveOldPrice(p, variant);
+  const discount = oldPrice ? Math.round(100-(price/oldPrice*100)) : null;
+  const maxN = getMaxInstallments(p);
+  const stock = variantEffectiveStock(p, variant);
+
+  let axesHtml = '';
+  if(p.variantAxes.color){
+    const values = distinctAxisValues(p,'color');
+    if(values.length>1){
+      axesHtml += `<div class="color-select">
+        <span class="color-label">Cor: <strong>${modalState.sel.color}</strong></span>
+        <div class="swatches">
+          ${values.map(val=>{
+            const v = p.variants.find(x=>x.color===val);
+            return `<button class="swatch${modalState.sel.color===val?' active':''}" style="background:${v.hex||'#ccc'}" data-axis="color" data-val="${val}" aria-label="Cor ${val}" title="${val}"></button>`;
+          }).join('')}
+        </div>
+      </div>`;
+    }
+  }
+  [['size','Tamanho'],['model','Modelo']].forEach(([axis,label])=>{
+    if(p.variantAxes[axis]){
+      const values = distinctAxisValues(p,axis);
+      if(values.length>1){
+        axesHtml += `<div class="installment-select">
+          <label>${label}</label>
+          <select data-axis="${axis}">
+            ${values.map(val=>`<option value="${val}" ${modalState.sel[axis]===val?'selected':''}>${val}</option>`).join('')}
+          </select>
+        </div>`;
+      }
+    }
+  });
+
+  const installOptions = Array.from({length:maxN},(_,i)=>i+1)
+    .map(n=>`<option value="${n}" ${n===modalState.installments?'selected':''}>${installmentLabel(price,n)}</option>`).join('');
+
+  const outOfStock = stock!=null && stock<=0;
+  const lowStock = !outOfStock && stock!=null && p.minStock!=null && stock<=p.minStock;
+  const stockNote = outOfStock
+    ? `<p class="admin-error" style="margin:-6px 0 14px;">Esgotado nesta variação.</p>`
+    : (lowStock ? `<p style="font-size:.75rem;color:var(--gold-deep);font-weight:700;margin:-6px 0 14px;">Últimas ${stock} unidades</p>` : '');
+
+  return `
+    <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+    <span class="card-cat">${categoryName(p.cat)}${variantEffectiveSku(p,variant)?` · ${variantEffectiveSku(p,variant)}`:''}</span>
+    <h3 class="serif">${p.name}</h3>
+    <div class="meta"><span>Marca: ${p.brand||'—'}</span><span>Disponibilidade: ${outOfStock?'Esgotado':'Em estoque'}</span></div>
+    <p class="desc">${p.fullDesc}</p>
+    ${axesHtml}
+    ${stockNote}
+    <div class="price-row">
+      ${oldPrice?`<span class="price-old">R$ ${formatPrice(oldPrice)}</span>`:''}
+      <span class="price-new">R$ ${formatPrice(price)}</span>
+      ${discount?`<span class="discount">-${discount}%</span>`:''}
+    </div>
+    <div class="installment-select">
+      <label for="installmentSelect">Parcelamento (sem juros)</label>
+      <select id="installmentSelect">${installOptions}</select>
+    </div>
+    <a class="btn btn-gold" id="waConfirmBtn" href="${waLink(p,variant,modalState.installments)}" target="_blank" rel="noopener" style="width:100%;justify-content:center;${outOfStock?'pointer-events:none;opacity:.5;':''}">Comprar via WhatsApp</a>
+  `;
+}
+
+function updateModalMedia(p){
+  const modalMedia = document.querySelector('.modal-media');
+  const galleryPhotos = (p.gallery||[]).filter(Boolean);
+
+  if(galleryPhotos.length>1){
+    if(modalState.photoIndex==null || modalState.photoIndex>=galleryPhotos.length) modalState.photoIndex=0;
+    modalMedia.innerHTML = `
+      <div class="modal-media-frame bracket"><img src="${galleryPhotos[modalState.photoIndex]}" alt="${p.name}"></div>
+      <button class="carousel-arrow prev" id="modalPrev" aria-label="Foto anterior"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="carousel-arrow next" id="modalNext" aria-label="Próxima foto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="mini-dots">${galleryPhotos.map((_,i)=>`<button class="mini-dot${i===modalState.photoIndex?' active':''}" data-idx="${i}" aria-label="Foto ${i+1}"></button>`).join('')}</div>
+    `;
+    modalMedia.querySelector('#modalPrev').addEventListener('click', ()=>{ modalState.photoIndex=(modalState.photoIndex-1+galleryPhotos.length)%galleryPhotos.length; updateModalMedia(p); });
+    modalMedia.querySelector('#modalNext').addEventListener('click', ()=>{ modalState.photoIndex=(modalState.photoIndex+1)%galleryPhotos.length; updateModalMedia(p); });
+    modalMedia.querySelectorAll('.mini-dot').forEach(dot=>{
+      dot.addEventListener('click', ()=>{ modalState.photoIndex=Number(dot.dataset.idx); updateModalMedia(p); });
+    });
+  }else{
+    const variant = findVariant(p, modalState.sel);
+    const img = variantEffectiveImg(p, variant);
+    modalMedia.innerHTML = img ? `<div class="modal-media-frame bracket"><img src="${img}" alt="${p.name}"></div>` : `<div class="ring"></div>`;
+  }
+}
+
+function attachModalEvents(p){
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modalBody.querySelectorAll('.swatch').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      modalState.sel[btn.dataset.axis] = btn.dataset.val;
+      refreshModal(p);
+    });
+  });
+  modalBody.querySelectorAll('select[data-axis]').forEach(sel=>{
+    sel.addEventListener('change', ()=>{
+      modalState.sel[sel.dataset.axis] = sel.value;
+      refreshModal(p);
+    });
+  });
+  document.getElementById('installmentSelect').addEventListener('change', e=>{
+    modalState.installments = Number(e.target.value);
+    refreshModal(p);
+  });
+}
+
+function refreshModal(p){
+  modalBody.innerHTML = renderModalBody(p);
+  updateModalMedia(p);
+  attachModalEvents(p);
+}
+
+function openModal(id, opts={}){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  const colorVariantIndex = opts.colorIdx || 0;
+  let initialColor = p.variants[0]?.color ?? null;
+  if(p.variantAxes.color){
+    const withImg = [...new Map(p.variants.map(v=>[v.color,v])).values()].filter(v=>v.img);
+    if(withImg[colorVariantIndex]) initialColor = withImg[colorVariantIndex].color;
+  }
+  modalState = {
+    productId:id,
+    sel:{ color:initialColor, size:p.variants[0]?.size ?? null, model:p.variants[0]?.model ?? null },
+    installments:1,
+    photoIndex: opts.photoIdx || 0
+  };
+  refreshModal(p);
+  modalOverlay.classList.add('show');
+}
+function closeModal(){ modalOverlay.classList.remove('show'); }
+modalOverlay.addEventListener('click', e=>{ if(e.target===modalOverlay) closeModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+/* ===== painel administrativo ===== */
+const ADMIN_PASSWORD = 'Gaspar1905!';
+const ADMIN_SESSION_KEY = 'jl_admin_session';
+let adminView = 'produtos';        // 'produtos' | 'categorias' | 'banners'
+let adminEditingId = null;         // null = lista | 'new' = criando | id = editando
+let adminDraft = null;
+let adminProductFilter = { search:'', cat:'todos' };
+
+function isAdminLoggedIn(){ return sessionStorage.getItem(ADMIN_SESSION_KEY)==='1'; }
+
+function slugify(s){
+  return (s||'').toString().toLowerCase().trim()
+    .normalize('NFD').replace(/\p{Diacritic}/gu,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || ('cat-'+Date.now());
+}
+
+function readImageAsDataURL(file, maxW=1000, quality=0.82){
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = ()=>{
+      const img = new Image();
+      img.onload = ()=>{
+        const scale = Math.min(1, maxW/img.width);
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.width*scale);
+        canvas.height = Math.round(img.height*scale);
+        canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.onerror = reject;
+      img.src = reader.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ---- uploader de imagens reutilizável (drag&drop, múltiplas, preview, excluir, reordenar) ---- */
+function renderUploader(images, opts={}){
+  const multiple = !!opts.multiple;
+  const imgs = (images||[]).filter(Boolean);
+  const thumbs = imgs.map((src,i)=>`
+    <div class="admin-thumb">
+      <img src="${src}" alt="">
+      ${multiple && i===0?'<span class="admin-thumb-tag">Principal</span>':''}
+      <div class="admin-thumb-controls">
+        ${multiple && i>0?`<button type="button" class="admin-thumb-up" data-idx="${i}" title="Mover para cima">↑</button>`:''}
+        ${multiple && i<imgs.length-1?`<button type="button" class="admin-thumb-down" data-idx="${i}" title="Mover para baixo">↓</button>`:''}
+        <button type="button" class="admin-thumb-del" data-idx="${i}" title="Remover">✕</button>
+      </div>
+    </div>
+  `).join('');
+  return `
+    <div class="admin-uploader" data-multiple="${multiple?1:0}">
+      <div class="admin-dropzone">Arraste ${multiple?'imagens':'uma imagem'} aqui ou <strong>clique para selecionar</strong>
+        <input type="file" accept="image/*" ${multiple?'multiple':''} hidden>
+      </div>
+      <div class="admin-thumb-grid">${thumbs}</div>
+    </div>
+  `;
+}
+function attachUploader(rootEl, getArr, setArr, onChange){
+  const uploaderEl = rootEl.querySelector('.admin-uploader');
+  const dz = rootEl.querySelector('.admin-dropzone');
+  const input = dz.querySelector('input[type=file]');
+  const multiple = uploaderEl.dataset.multiple==='1';
+
+  dz.addEventListener('click', ()=>input.click());
+  dz.addEventListener('dragover', e=>{ e.preventDefault(); dz.classList.add('drag'); });
+  dz.addEventListener('dragleave', ()=>dz.classList.remove('drag'));
+  dz.addEventListener('drop', e=>{ e.preventDefault(); dz.classList.remove('drag'); handleFiles(e.dataTransfer.files); });
+  input.addEventListener('change', ()=>{ handleFiles(input.files); input.value=''; });
+
+  async function handleFiles(fileList){
+    const files = Array.from(fileList).filter(f=>f.type.startsWith('image/'));
+    if(!files.length) return;
+    let arr = (getArr()||[]).filter(Boolean);
+    if(!multiple){
+      arr = [await readImageAsDataURL(files[0])];
+    }else{
+      for(const f of files){
+        try{ arr.push(await readImageAsDataURL(f)); }catch(e){}
+      }
+    }
+    setArr(arr);
+    onChange();
+  }
+  rootEl.querySelectorAll('.admin-thumb-del').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const arr = (getArr()||[]).filter(Boolean);
+      arr.splice(Number(btn.dataset.idx),1);
+      setArr(arr); onChange();
+    });
+  });
+  rootEl.querySelectorAll('.admin-thumb-up').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const arr = (getArr()||[]).filter(Boolean);
+      const i = Number(btn.dataset.idx);
+      [arr[i-1],arr[i]] = [arr[i],arr[i-1]];
+      setArr(arr); onChange();
+    });
+  });
+  rootEl.querySelectorAll('.admin-thumb-down').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const arr = (getArr()||[]).filter(Boolean);
+      const i = Number(btn.dataset.idx);
+      [arr[i+1],arr[i]] = [arr[i],arr[i+1]];
+      setArr(arr); onChange();
+    });
+  });
+}
+
+/* ---- login / criação de senha ---- */
+const adminAuthOverlay = document.getElementById('adminAuthOverlay');
+const adminAuthContent = document.getElementById('adminAuthContent');
+
+function openAdminAuth(){ adminAuthOverlay.classList.add('show'); renderAdminAuth(); }
+function closeAdminAuth(){ adminAuthOverlay.classList.remove('show'); }
+document.getElementById('adminAuthClose').addEventListener('click', closeAdminAuth);
+adminAuthOverlay.addEventListener('click', e=>{ if(e.target===adminAuthOverlay) closeAdminAuth(); });
+
+document.getElementById('adminTrigger').addEventListener('click', ()=>{
+  if(isAdminLoggedIn()) enterAdminApp();
+  else openAdminAuth();
+});
+
+/* ---- popup "nova categoria" (substitui o prompt() nativo do navegador) ---- */
+let quickCatOnResult = null;
+function openQuickCatModal(onResult){
+  quickCatOnResult = onResult;
+  document.getElementById('quickCatName').value = '';
+  document.getElementById('quickCatError').textContent = '';
+  document.getElementById('adminQuickCatOverlay').classList.add('show');
+  setTimeout(()=>document.getElementById('quickCatName').focus(), 50);
+}
+function closeQuickCatModal(result){
+  document.getElementById('adminQuickCatOverlay').classList.remove('show');
+  const cb = quickCatOnResult;
+  quickCatOnResult = null;
+  if(cb) cb(result);
+}
+document.getElementById('adminQuickCatForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const name = document.getElementById('quickCatName').value.trim();
+  const errorEl = document.getElementById('quickCatError');
+  if(!name){ errorEl.textContent='Digite um nome.'; return; }
+  const id = slugify(name);
+  if(categories.some(c=>c.id===id)){ errorEl.textContent='Já existe uma categoria com esse nome.'; return; }
+  categories.push({id, name, img:null, desc:'', icon:'tag', order:categories.length+1});
+  saveCategories(); render(); renderCatTeaser();
+  closeQuickCatModal(id);
+});
+document.getElementById('adminQuickCatClose').addEventListener('click', ()=>closeQuickCatModal(null));
+document.getElementById('adminQuickCatCancel').addEventListener('click', ()=>closeQuickCatModal(null));
+document.getElementById('adminQuickCatOverlay').addEventListener('click', e=>{
+  if(e.target.id==='adminQuickCatOverlay') closeQuickCatModal(null);
+});
+
+function renderAdminAuth(){
+  adminAuthContent.innerHTML = renderLoginForm();
+  document.getElementById('adminLoginForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    const val = document.getElementById('adminPassInput').value;
+    if(val === ADMIN_PASSWORD){
+      sessionStorage.setItem(ADMIN_SESSION_KEY,'1');
+      closeAdminAuth();
+      enterAdminApp();
+    }else{
+      document.getElementById('adminLoginError').textContent = 'Senha incorreta.';
+    }
+  });
+}
+function renderLoginForm(){
+  return `
+    <h3 class="serif admin-title">Área Admin</h3>
+    <p class="admin-sub">Entre com a senha para editar o catálogo.</p>
+    <form id="adminLoginForm">
+      <div class="form-field"><label for="adminPassInput">Senha</label><input id="adminPassInput" type="password" required autocomplete="current-password"></div>
+      <p class="admin-error" id="adminLoginError"></p>
+      <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;">Entrar</button>
+    </form>
+  `;
+}
+
+/* ---- app admin de página inteira ---- */
+function enterAdminApp(){
+  document.body.classList.add('admin-mode');
+  adminView='produtos'; adminEditingId=null; adminDraft=null;
+  document.querySelectorAll('#adminNav .admin-nav-btn').forEach(b=>b.classList.toggle('active', b.dataset.view==='produtos'));
+  renderAdminMain();
+}
+function exitAdminApp(){ document.body.classList.remove('admin-mode'); }
+document.getElementById('adminExitBtn').addEventListener('click', exitAdminApp);
+document.getElementById('adminLogoutBtn').addEventListener('click', ()=>{
+  sessionStorage.removeItem(ADMIN_SESSION_KEY);
+  exitAdminApp();
+});
+document.getElementById('adminNav').addEventListener('click', e=>{
+  const btn = e.target.closest('.admin-nav-btn');
+  if(!btn) return;
+  adminView = btn.dataset.view;
+  adminEditingId = null; adminDraft = null;
+  document.querySelectorAll('#adminNav .admin-nav-btn').forEach(b=>b.classList.toggle('active', b===btn));
+  renderAdminMain();
+});
+
+function renderAdminMain(){
+  const main = document.getElementById('adminMain');
+  if(adminView==='produtos'){
+    if(adminEditingId!==null){ main.innerHTML = renderProdutosForm(); attachProdutosFormEvents(); }
+    else{ main.innerHTML = renderProdutosList(); attachProdutosListEvents(); }
+  }else if(adminView==='categorias'){
+    if(adminEditingId!==null){ main.innerHTML = renderCategoriasForm(); attachCategoriasFormEvents(); }
+    else{ main.innerHTML = renderCategoriasList(); attachCategoriasListEvents(); }
+  }else if(adminView==='banners'){
+    if(adminEditingId!==null){ main.innerHTML = renderBannersForm(); attachBannersFormEvents(); }
+    else{ main.innerHTML = renderBannersList(); attachBannersListEvents(); }
+  }
+}
+
+/* ================= PRODUTOS ================= */
+function buildProductRowsHtml(){
+  const filtered = products.filter(p=>{
+    if(adminProductFilter.cat!=='todos' && p.cat!==adminProductFilter.cat) return false;
+    if(adminProductFilter.search){
+      const s = adminProductFilter.search.toLowerCase();
+      if(!p.name.toLowerCase().includes(s) && !p.sku.toLowerCase().includes(s) && !(p.brand||'').toLowerCase().includes(s)) return false;
+    }
+    return true;
+  });
+  if(!filtered.length) return '<p class="admin-sub">Nenhum produto encontrado.</p>';
+  return filtered.map(p=>{
+    const thumb = p.gallery?.[0] || p.variants[0]?.img || null;
+    return `
+    <div class="admin-row">
+      <div class="admin-row-thumb">${thumb?`<img src="${thumb}" alt="">`:'<div class="ring"></div>'}</div>
+      <div class="admin-row-info">
+        <strong>${p.name}</strong>
+        <span>${categoryName(p.cat)}${p.sku?` · ${p.sku}`:''} · R$ ${formatPrice(p.promo??p.price)}${p.promo?` (de R$ ${formatPrice(p.price)})`:''}${p.stock!=null?` · estoque ${p.stock}`:''}</span>
+      </div>
+      <div class="admin-row-actions">
+        <button class="btn btn-outline btn-sm admin-edit-btn" data-id="${p.id}">Editar</button>
+        <button class="btn btn-outline btn-sm admin-dup-btn" data-id="${p.id}">Duplicar</button>
+        <button class="btn btn-outline btn-sm admin-del-btn" data-id="${p.id}">Excluir</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+function refreshProductRows(){
+  const wrap = document.getElementById('adminProductRows');
+  wrap.innerHTML = buildProductRowsHtml();
+  attachProductRowEvents();
+}
+function attachProductRowEvents(){
+  document.querySelectorAll('.admin-edit-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = Number(btn.dataset.id);
+      adminDraft = JSON.parse(JSON.stringify(products.find(x=>x.id===id)));
+      adminEditingId = id;
+      renderAdminMain();
+    });
+  });
+  document.querySelectorAll('.admin-dup-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = Number(btn.dataset.id);
+      const p = products.find(x=>x.id===id);
+      const copy = JSON.parse(JSON.stringify(p));
+      copy.id = Date.now();
+      copy.name = p.name+' (cópia)';
+      copy.sku = p.sku+'-COPIA';
+      copy.order = products.length+1;
+      products.push(copy);
+      saveProducts();
+      render();
+      refreshProductRows();
+    });
+  });
+  document.querySelectorAll('.admin-del-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = Number(btn.dataset.id);
+      const p = products.find(x=>x.id===id);
+      if(confirm(`Excluir "${p.name}"? Essa ação não pode ser desfeita.`)){
+        products = products.filter(x=>x.id!==id);
+        saveProducts();
+        render();
+        refreshProductRows();
+      }
+    });
+  });
+}
+function renderProdutosList(){
+  const catOptions = `<option value="todos">Todas categorias</option>` + categories.map(c=>`<option value="${c.id}" ${adminProductFilter.cat===c.id?'selected':''}>${c.name}</option>`).join('');
+  return `
+    <div class="admin-header"><h3 class="serif admin-title">Produtos (${products.length})</h3></div>
+    <div class="admin-toolbar">
+      <button type="button" class="btn btn-gold btn-sm" id="adminNewBtn">+ Novo produto</button>
+      <input type="text" id="adminSearchInput" placeholder="Buscar por nome, SKU ou marca…" value="${adminProductFilter.search}">
+      <select id="adminCatFilter">${catOptions}</select>
+    </div>
+    <div class="admin-toolbar">
+      <button type="button" class="btn btn-outline btn-sm" id="adminExportBtn">⬇ Exportar Excel</button>
+      <button type="button" class="btn btn-outline btn-sm" id="adminImportExcelBtn">⬆ Importar Excel/CSV</button>
+      <input type="file" id="adminImportFile" accept=".xlsx,.xls,.csv" hidden>
+      <button type="button" class="btn btn-outline btn-sm" id="adminImportPdfBtn">⬆ Importar de PDF / texto</button>
+    </div>
+    <div class="admin-paste-panel" id="adminPastePanel" style="display:none;margin-bottom:22px;border:1px solid var(--stone);background:var(--white);padding:18px;max-width:760px;">
+      <p class="admin-sub" style="margin-top:0;">Abra o PDF, selecione o texto da lista de produtos (Ctrl+A / Ctrl+C) e cole abaixo. Reorganize cada produto em uma linha, campos separados por ponto e vírgula, nesta ordem:<br><strong>Nome; SKU; Categoria; Preço; Preço promocional; Estoque</strong><br>(deixe um campo em branco entre dois ";" se não tiver essa informação)</p>
+      <textarea id="adminPasteText" rows="8" style="width:100%;border:1px solid var(--stone);padding:10px;font-family:inherit;font-size:.82rem;border-radius:2px;" placeholder="Colar Argola Dourada; JL-BR099; Semi Joias; 129.90; 99.90; 15"></textarea>
+      <div class="admin-form-actions" style="margin-top:12px;">
+        <button type="button" class="btn btn-gold btn-sm" id="adminPasteConfirm">Importar texto</button>
+        <button type="button" class="btn btn-outline btn-sm" id="adminPasteCancel">Cancelar</button>
+      </div>
+    </div>
+    <div class="admin-list" id="adminProductRows"></div>
+  `;
+}
+function attachProdutosListEvents(){
+  document.getElementById('adminNewBtn').addEventListener('click', ()=>{
+    adminDraft = {
+      id:Date.now(), name:'', cat:categories[0]?.id||'', brand:'Jéssica Laysa', sku:'',
+      shortDesc:'', fullDesc:'', price:null, promo:null, stock:null, minStock:null, maxParcelas:null,
+      featured:false, isLaunch:false, order:products.length+1, gallery:[],
+      variantAxes:{color:true,size:false,model:false},
+      variants:[{color:'Único',size:null,model:null,img:null,price:null,stock:null,sku:null}]
+    };
+    adminEditingId = 'new';
+    renderAdminMain();
+  });
+  document.getElementById('adminSearchInput').addEventListener('input', e=>{ adminProductFilter.search=e.target.value; refreshProductRows(); });
+  document.getElementById('adminCatFilter').addEventListener('change', e=>{ adminProductFilter.cat=e.target.value; refreshProductRows(); });
+
+  document.getElementById('adminExportBtn').addEventListener('click', exportProductsExcel);
+
+  document.getElementById('adminImportExcelBtn').addEventListener('click', ()=>{
+    if(typeof XLSX==='undefined'){ alert('A biblioteca de planilhas ainda está carregando, tente novamente em alguns segundos.'); return; }
+    document.getElementById('adminImportFile').click();
+  });
+  document.getElementById('adminImportFile').addEventListener('change', e=>{
+    const file = e.target.files[0];
+    e.target.value = '';
+    if(file) importProductsExcelFile(file);
+  });
+
+  document.getElementById('adminImportPdfBtn').addEventListener('click', ()=>{
+    document.getElementById('adminPastePanel').style.display = 'block';
+  });
+  document.getElementById('adminPasteCancel').addEventListener('click', ()=>{
+    document.getElementById('adminPastePanel').style.display = 'none';
+    document.getElementById('adminPasteText').value = '';
+  });
+  document.getElementById('adminPasteConfirm').addEventListener('click', ()=>{
+    const text = document.getElementById('adminPasteText').value;
+    const rows = parsePastedText(text);
+    if(!rows.length){ alert('Nenhuma linha reconhecida. Confira o formato (Nome; SKU; Categoria; Preço; Preço promocional; Estoque).'); return; }
+    importProductsFromRows(rows);
+    document.getElementById('adminPastePanel').style.display = 'none';
+    document.getElementById('adminPasteText').value = '';
+  });
+
+  refreshProductRows();
+}
+
+/* ---- exportar / importar em Excel (e colar texto de PDF) ---- */
+function exportProductsExcel(){
+  if(typeof XLSX==='undefined'){ alert('A biblioteca de planilhas ainda está carregando, tente novamente em alguns segundos.'); return; }
+  const rows = [];
+  products.forEach(p=>{
+    p.variants.forEach(v=>{
+      rows.push({
+        ID: p.id,
+        Nome: p.name,
+        Categoria: categoryName(p.cat),
+        Marca: p.brand||'',
+        SKU: variantEffectiveSku(p,v)||'',
+        'Descrição Curta': p.shortDesc||'',
+        'Descrição Completa': p.fullDesc||'',
+        'Preço Original': p.price,
+        'Preço Promocional': p.promo??'',
+        'Estoque': p.stock,
+        'Estoque Mínimo': p.minStock,
+        'Parcelas Máximas': p.maxParcelas??'',
+        Destaque: p.featured?'Sim':'Não',
+        'Lançamento': p.isLaunch?'Sim':'Não',
+        Cor: v.color||'',
+        Tamanho: v.size||'',
+        Modelo: v.model||'',
+        'Preço da Variação': v.price??'',
+        'Estoque da Variação': v.stock??'',
+        'SKU da Variação': v.sku||'',
+      });
+    });
+  });
+  const ws = XLSX.utils.json_to_sheet(rows);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Produtos');
+  XLSX.writeFile(wb, `produtos-jessica-laysa-${new Date().toISOString().slice(0,10)}.xlsx`);
+}
+
+function importProductsExcelFile(file){
+  const reader = new FileReader();
+  reader.onload = e=>{
+    try{
+      const wb = XLSX.read(new Uint8Array(e.target.result), {type:'array'});
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(ws, {defval:''});
+      if(!rows.length){ alert('A planilha está vazia.'); return; }
+      importProductsFromRows(rows);
+    }catch(err){
+      alert('Não foi possível ler esse arquivo. Confira se é um .xlsx, .xls ou .csv válido.');
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function parsePastedText(text){
+  return text.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
+    const cols = line.split(';').map(c=>c.trim());
+    return {
+      Nome: cols[0]||'', SKU: cols[1]||'', Categoria: cols[2]||'',
+      'Preço Original': cols[3]||'', 'Preço Promocional': cols[4]||'', 'Estoque': cols[5]||''
+    };
+  }).filter(r=>r.Nome && !/^nome$/i.test(r.Nome));
+}
+
+function rowsToProducts(rows){
+  const groups = new Map();
+  rows.forEach(r=>{
+    const key = (r.ID!==undefined && r.ID!=='') ? 'id:'+r.ID : 'sku:'+(r.Nome||'')+'|'+(r.SKU||'');
+    if(!groups.has(key)){
+      const cat = categories.find(c=>c.name.toLowerCase()===String(r.Categoria||'').toLowerCase());
+      groups.set(key, {
+        id: (r.ID!==undefined && r.ID!=='') ? Number(r.ID) : (Date.now()+Math.floor(Math.random()*10000)),
+        name: r.Nome||'',
+        cat: cat ? cat.id : (categories[0]?.id||''),
+        brand: r.Marca||'',
+        sku: r.SKU||'',
+        shortDesc: r['Descrição Curta']||'',
+        fullDesc: r['Descrição Completa']||r['Descrição Curta']||'',
+        price: parseFloat(r['Preço Original'])||0,
+        promo: (r['Preço Promocional']!==''&&r['Preço Promocional']!=null&&!isNaN(parseFloat(r['Preço Promocional']))) ? parseFloat(r['Preço Promocional']) : null,
+        stock: parseInt(r['Estoque'],10)||0,
+        minStock: parseInt(r['Estoque Mínimo'],10)||0,
+        maxParcelas: (r['Parcelas Máximas']!==''&&r['Parcelas Máximas']!=null&&!isNaN(parseInt(r['Parcelas Máximas'],10))) ? parseInt(r['Parcelas Máximas'],10) : null,
+        featured: /^sim$/i.test(String(r.Destaque||'')),
+        isLaunch: /^sim$/i.test(String(r['Lançamento']||'')),
+        order: Date.now(), gallery:[],
+        variantAxes:{color:!!r.Cor, size:!!r.Tamanho, model:!!r.Modelo},
+        variants: []
+      });
+    }
+    const prod = groups.get(key);
+    prod.variants.push({
+      color:r.Cor||null, size:r.Tamanho||null, model:r.Modelo||null, img:null,
+      price:(r['Preço da Variação']!==''&&r['Preço da Variação']!=null&&!isNaN(parseFloat(r['Preço da Variação'])))?parseFloat(r['Preço da Variação']):null,
+      stock:(r['Estoque da Variação']!==''&&r['Estoque da Variação']!=null&&!isNaN(parseInt(r['Estoque da Variação'],10)))?parseInt(r['Estoque da Variação'],10):null,
+      sku:r['SKU da Variação']||r.SKU||null
+    });
+  });
+  return [...groups.values()].map(p=>{
+    if(!p.variants.length) p.variants=[{color:'Único',size:null,model:null,img:null,price:null,stock:null,sku:null}];
+    return p;
+  });
+}
+
+function importProductsFromRows(rows){
+  const imported = rowsToProducts(rows);
+  let updated=0, created=0;
+  imported.forEach(imp=>{
+    const existing = products.find(p=>p.id===imp.id) ||
+      (imp.sku ? products.find(p=>p.sku && p.sku.toLowerCase()===imp.sku.toLowerCase()) : null);
+    if(existing){
+      imp.gallery = existing.gallery;
+      imp.variants.forEach((v,i)=>{
+        const exV = existing.variants.find(ev=>(ev.color||null)===(v.color||null) && (ev.size||null)===(v.size||null) && (ev.model||null)===(v.model||null)) || existing.variants[i];
+        if(exV) v.img = exV.img;
+      });
+      Object.assign(existing, imp, {id:existing.id});
+      updated++;
+    }else{
+      products.push(imp);
+      created++;
+    }
+  });
+  saveProducts(); render(); refreshProductRows();
+  alert(`Importação concluída: ${created} produto(s) novo(s), ${updated} atualizado(s). Fotos já existentes foram mantidas.`);
+}
+
+function renderVariantsBlock(p){
+  const axesHtml = [['color','Cor'],['size','Tamanho'],['model','Modelo']].map(([axis,label])=>
+    `<label class="admin-checkbox-row"><input type="checkbox" class="admin-axis-toggle" data-axis="${axis}" ${p.variantAxes[axis]?'checked':''}> ${label}</label>`
+  ).join('');
+  const rowsHtml = p.variants.map((v,i)=>`
+    <div class="admin-variant-row">
+      ${p.variantAxes.color?`<div class="admin-variant-field"><label>Cor</label><input type="text" class="v-color" data-idx="${i}" value="${v.color||''}"></div>`:''}
+      ${p.variantAxes.size?`<div class="admin-variant-field"><label>Tamanho</label><input type="text" class="v-size" data-idx="${i}" value="${v.size||''}"></div>`:''}
+      ${p.variantAxes.model?`<div class="admin-variant-field"><label>Modelo</label><input type="text" class="v-model" data-idx="${i}" value="${v.model||''}"></div>`:''}
+      <div class="admin-variant-field"><label>Preço próprio</label><input type="number" step="0.01" class="v-price" data-idx="${i}" value="${v.price??''}" placeholder="do produto"></div>
+      <div class="admin-variant-field"><label>Estoque próprio</label><input type="number" class="v-stock" data-idx="${i}" value="${v.stock??''}" placeholder="do produto"></div>
+      <div class="admin-variant-field"><label>SKU próprio</label><input type="text" class="v-sku" data-idx="${i}" value="${v.sku||''}" placeholder="do produto"></div>
+      <div class="admin-variant-field" style="min-width:100px;"><label>Imagem</label><div id="variantUploader${i}"></div></div>
+      ${p.variants.length>1?`<button type="button" class="admin-variant-remove" data-idx="${i}" aria-label="Remover variação">✕</button>`:''}
+    </div>
+  `).join('');
+  return `
+    <fieldset class="admin-fieldset">
+      <legend>Variações</legend>
+      <div class="admin-axis-toggles">${axesHtml}</div>
+      <div id="adminVariantsList">${rowsHtml}</div>
+      <button type="button" class="btn btn-outline btn-sm" id="adminAddVariantBtn">+ Adicionar variação</button>
+    </fieldset>
+  `;
+}
+function renderProdutosForm(){
+  const p = adminDraft;
+  const catOptions = categories.map(c=>`<option value="${c.id}" ${p.cat===c.id?'selected':''}>${c.name}</option>`).join('')
+    + `<option value="__new__">+ Nova categoria…</option>`;
+  return `
+    <div class="admin-header">
+      <h3 class="serif admin-title">${adminEditingId==='new'?'Novo produto':'Editar produto'}</h3>
+      <button type="button" class="admin-back-btn" id="adminBackBtn">← Voltar à lista</button>
+    </div>
+    <form id="adminForm" class="admin-form">
+      <fieldset class="admin-fieldset">
+        <legend>Informações básicas</legend>
+        <div class="admin-grid">
+          <div class="form-field"><label for="fName">Nome *</label><input id="fName" type="text" required value="${p.name||''}"></div>
+          <div class="form-field"><label for="fCat">Categoria</label><select id="fCat">${catOptions}</select></div>
+          <div class="form-field"><label for="fBrand">Marca</label><input id="fBrand" type="text" value="${p.brand||''}"></div>
+          <div class="form-field"><label for="fSku">SKU</label><input id="fSku" type="text" value="${p.sku||''}"></div>
+        </div>
+        <div class="form-field"><label for="fShortDesc">Descrição curta</label><input id="fShortDesc" type="text" value="${p.shortDesc||''}"></div>
+        <div class="form-field"><label for="fFullDesc">Descrição completa</label><textarea id="fFullDesc">${p.fullDesc||''}</textarea></div>
+      </fieldset>
+
+      <fieldset class="admin-fieldset">
+        <legend>Preço e estoque</legend>
+        <div class="admin-grid">
+          <div class="form-field"><label for="fPrice">Preço original (R$) *</label><input id="fPrice" type="number" step="0.01" min="0" required value="${p.price??''}"></div>
+          <div class="form-field"><label for="fPromo">Preço promocional (R$)</label><input id="fPromo" type="number" step="0.01" min="0" value="${p.promo??''}"></div>
+          <div class="form-field"><label for="fStock">Quantidade em estoque</label><input id="fStock" type="number" min="0" value="${p.stock??''}"></div>
+          <div class="form-field"><label for="fMinStock">Quantidade mínima</label><input id="fMinStock" type="number" min="0" value="${p.minStock??''}"></div>
+          <div class="form-field"><label for="fParcelas">Parcelamento máximo (vazio = automático)</label><input id="fParcelas" type="number" min="1" max="12" value="${p.maxParcelas||''}"></div>
+        </div>
+        <label class="admin-checkbox-row"><input type="checkbox" id="fFeatured" ${p.featured?'checked':''}> Produto em destaque</label>
+        <label class="admin-checkbox-row"><input type="checkbox" id="fLaunch" ${p.isLaunch?'checked':''}> Lançamento</label>
+      </fieldset>
+
+      <fieldset class="admin-fieldset">
+        <legend>Galeria do produto</legend>
+        <p class="admin-sub" style="margin:-6px 0 14px;">Adicione 2 ou mais fotos do mesmo produto (ângulos diferentes, detalhes, etc.). Elas aparecem automaticamente em um mini carrossel no card e na visualização rápida.</p>
+        <div id="galleryUploader"></div>
+      </fieldset>
+
+      ${renderVariantsBlock(p)}
+
+      <p class="admin-error" id="adminFormError"></p>
+      <div class="admin-form-actions">
+        <button type="submit" class="btn btn-gold">Salvar</button>
+        <button type="button" class="btn btn-outline" id="adminCancelBtn">Cancelar</button>
+      </div>
+    </form>
+  `;
+}
+function attachProdutosFormEvents(){
+  document.getElementById('adminBackBtn').addEventListener('click', ()=>{ adminEditingId=null; adminDraft=null; renderAdminMain(); });
+  document.getElementById('adminCancelBtn').addEventListener('click', ()=>{ adminEditingId=null; adminDraft=null; renderAdminMain(); });
+
+  const bind = (id, field, opts={})=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.addEventListener(opts.evt||'input', ()=>{ adminDraft[field] = opts.parser ? opts.parser(el.value) : el.value; });
+  };
+  bind('fName','name'); bind('fBrand','brand'); bind('fSku','sku');
+  bind('fShortDesc','shortDesc'); bind('fFullDesc','fullDesc');
+
+  document.getElementById('fCat').addEventListener('change', e=>{
+    if(e.target.value==='__new__'){
+      const prevCat = adminDraft.cat;
+      const selectEl = e.target;
+      openQuickCatModal(newId=>{
+        if(newId){ adminDraft.cat = newId; renderAdminMain(); }
+        else{ selectEl.value = prevCat; }
+      });
+      return;
+    }
+    adminDraft.cat = e.target.value;
+  });
+  bind('fPrice','price',{parser:v=>v===''?null:parseFloat(v)});
+  bind('fPromo','promo',{parser:v=>v===''?null:parseFloat(v)});
+  bind('fStock','stock',{parser:v=>v===''?null:parseInt(v,10)});
+  bind('fMinStock','minStock',{parser:v=>v===''?null:parseInt(v,10)});
+  bind('fParcelas','maxParcelas',{parser:v=>v?Math.max(1,Math.min(12,parseInt(v,10))):null});
+  document.getElementById('fFeatured').addEventListener('change', e=>{ adminDraft.featured=e.target.checked; });
+  document.getElementById('fLaunch').addEventListener('change', e=>{ adminDraft.isLaunch=e.target.checked; });
+
+  const galWrap = document.getElementById('galleryUploader');
+  galWrap.innerHTML = renderUploader(adminDraft.gallery,{multiple:true});
+  attachUploader(galWrap, ()=>adminDraft.gallery, arr=>{ adminDraft.gallery=arr; }, ()=>renderAdminMain());
+
+  document.querySelectorAll('.admin-axis-toggle').forEach(cb=>{
+    cb.addEventListener('change', ()=>{ adminDraft.variantAxes[cb.dataset.axis]=cb.checked; renderAdminMain(); });
+  });
+  document.getElementById('adminAddVariantBtn').addEventListener('click', ()=>{
+    adminDraft.variants.push({color:'',size:'',model:'',img:null,price:null,stock:null,sku:null});
+    renderAdminMain();
+  });
+  document.querySelectorAll('.admin-variant-remove').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ adminDraft.variants.splice(Number(btn.dataset.idx),1); renderAdminMain(); });
+  });
+  ['color','size','model','sku'].forEach(field=>{
+    document.querySelectorAll('.v-'+field).forEach(inp=>{
+      inp.addEventListener('input', ()=>{ adminDraft.variants[Number(inp.dataset.idx)][field]=inp.value||null; });
+    });
+  });
+  ['price','stock'].forEach(field=>{
+    document.querySelectorAll('.v-'+field).forEach(inp=>{
+      inp.addEventListener('input', ()=>{ const v=inp.value; adminDraft.variants[Number(inp.dataset.idx)][field]=v===''?null:Number(v); });
+    });
+  });
+  adminDraft.variants.forEach((v,i)=>{
+    const wrap = document.getElementById('variantUploader'+i);
+    if(!wrap) return;
+    wrap.innerHTML = renderUploader(v.img?[v.img]:[],{multiple:false});
+    attachUploader(wrap, ()=>adminDraft.variants[i].img?[adminDraft.variants[i].img]:[], arr=>{ adminDraft.variants[i].img=arr[0]||null; }, ()=>renderAdminMain());
+  });
+
+  document.getElementById('adminForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    const errs = [];
+    if(!adminDraft.name) errs.push('nome');
+    if(!adminDraft.price || adminDraft.price<=0) errs.push('preço');
+    if(errs.length){
+      document.getElementById('adminFormError').textContent = 'Preencha corretamente: '+errs.join(', ')+'.';
+      return;
+    }
+    if(adminDraft.promo!=null && adminDraft.promo>=adminDraft.price){
+      document.getElementById('adminFormError').textContent = 'O preço promocional deve ser menor que o preço original.';
+      return;
+    }
+    if(!adminDraft.variants.length) adminDraft.variants=[{color:'Único',size:null,model:null,img:null,price:null,stock:null,sku:null}];
+    if(!adminDraft.order) adminDraft.order = Date.now();
+
+    if(adminEditingId==='new'){ products.push(adminDraft); }
+    else{ const i=products.findIndex(x=>x.id===adminEditingId); if(i>-1) products[i]=adminDraft; }
+    saveProducts();
+    render();
+    adminEditingId = null; adminDraft = null;
+    renderAdminMain();
+  });
+}
+
+/* ================= CATEGORIAS ================= */
+function renderCategoriasList(){
+  const rows = categories.slice().sort((a,b)=>a.order-b.order).map(c=>`
+    <div class="admin-row">
+      <div class="admin-row-thumb">${c.img?`<img src="${c.img}" alt="">`:iconSvg(c.icon)}</div>
+      <div class="admin-row-info"><strong>${c.name}</strong><span>Ordem ${c.order} · ${products.filter(p=>p.cat===c.id).length} produto(s)</span></div>
+      <div class="admin-row-actions">
+        <button class="btn btn-outline btn-sm admin-cat-edit" data-id="${c.id}">Editar</button>
+        <button class="btn btn-outline btn-sm admin-cat-del" data-id="${c.id}">Excluir</button>
+      </div>
+    </div>
+  `).join('');
+  return `
+    <div class="admin-header"><h3 class="serif admin-title">Categorias (${categories.length})</h3></div>
+    <div class="admin-toolbar"><button type="button" class="btn btn-gold btn-sm" id="adminCatNewBtn">+ Nova categoria</button></div>
+    <div class="admin-list">${rows || '<p class="admin-sub">Nenhuma categoria cadastrada.</p>'}</div>
+  `;
+}
+function attachCategoriasListEvents(){
+  document.getElementById('adminCatNewBtn').addEventListener('click', ()=>{
+    adminDraft = {id:null,name:'',img:null,desc:'',icon:'tag',order:categories.length+1};
+    adminEditingId = 'new';
+    renderAdminMain();
+  });
+  document.querySelectorAll('.admin-cat-edit').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      adminDraft = JSON.parse(JSON.stringify(categories.find(c=>c.id===btn.dataset.id)));
+      adminEditingId = btn.dataset.id;
+      renderAdminMain();
+    });
+  });
+  document.querySelectorAll('.admin-cat-del').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.dataset.id;
+      const inUse = products.filter(p=>p.cat===id).length;
+      if(inUse>0){ alert(`Não é possível excluir: ${inUse} produto(s) usam essa categoria. Altere a categoria desses produtos primeiro.`); return; }
+      if(categories.length<=1){ alert('É preciso manter ao menos uma categoria.'); return; }
+      if(confirm('Excluir esta categoria?')){
+        categories = categories.filter(c=>c.id!==id);
+        saveCategories(); render(); renderCatTeaser();
+        renderAdminMain();
+      }
+    });
+  });
+}
+function renderCategoriasForm(){
+  const c = adminDraft;
+  const iconOptions = Object.keys(CAT_ICONS).map(k=>`<option value="${k}" ${c.icon===k?'selected':''}>${k}</option>`).join('');
+  return `
+    <div class="admin-header">
+      <h3 class="serif admin-title">${adminEditingId==='new'?'Nova categoria':'Editar categoria'}</h3>
+      <button type="button" class="admin-back-btn" id="adminBackBtn">← Voltar à lista</button>
+    </div>
+    <form id="adminForm" class="admin-form">
+      <div class="admin-grid">
+        <div class="form-field"><label for="fCatName">Nome *</label><input id="fCatName" type="text" required value="${c.name||''}"></div>
+        <div class="form-field"><label for="fCatOrder">Ordem de exibição</label><input id="fCatOrder" type="number" min="1" value="${c.order??1}"></div>
+      </div>
+      <div class="form-field"><label for="fCatIcon">Ícone</label><select id="fCatIcon">${iconOptions}</select></div>
+      <div class="form-field"><label for="fCatDesc">Descrição</label><textarea id="fCatDesc">${c.desc||''}</textarea></div>
+      <fieldset class="admin-fieldset"><legend>Imagem da categoria</legend><div id="catImgUploader"></div></fieldset>
+      <p class="admin-error" id="adminFormError"></p>
+      <div class="admin-form-actions">
+        <button type="submit" class="btn btn-gold">Salvar</button>
+        <button type="button" class="btn btn-outline" id="adminCancelBtn">Cancelar</button>
+      </div>
+    </form>
+  `;
+}
+function attachCategoriasFormEvents(){
+  document.getElementById('adminBackBtn').addEventListener('click', ()=>{ adminEditingId=null; adminDraft=null; renderAdminMain(); });
+  document.getElementById('adminCancelBtn').addEventListener('click', ()=>{ adminEditingId=null; adminDraft=null; renderAdminMain(); });
+  document.getElementById('fCatName').addEventListener('input', e=>{ adminDraft.name=e.target.value; });
+  document.getElementById('fCatOrder').addEventListener('input', e=>{ adminDraft.order=e.target.value?parseInt(e.target.value,10):1; });
+  document.getElementById('fCatIcon').addEventListener('change', e=>{ adminDraft.icon=e.target.value; });
+  document.getElementById('fCatDesc').addEventListener('input', e=>{ adminDraft.desc=e.target.value; });
+
+  const wrap = document.getElementById('catImgUploader');
+  wrap.innerHTML = renderUploader(adminDraft.img?[adminDraft.img]:[],{multiple:false});
+  attachUploader(wrap, ()=>adminDraft.img?[adminDraft.img]:[], arr=>{ adminDraft.img=arr[0]||null; }, ()=>renderAdminMain());
+
+  document.getElementById('adminForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    if(!adminDraft.name){ document.getElementById('adminFormError').textContent='Preencha o nome da categoria.'; return; }
+    if(adminEditingId==='new'){
+      adminDraft.id = slugify(adminDraft.name);
+      if(categories.some(c=>c.id===adminDraft.id)){ document.getElementById('adminFormError').textContent='Já existe uma categoria com esse nome.'; return; }
+      categories.push(adminDraft);
+    }else{
+      const i = categories.findIndex(c=>c.id===adminEditingId);
+      if(i>-1) categories[i] = adminDraft;
+    }
+    saveCategories(); render(); renderCatTeaser();
+    adminEditingId=null; adminDraft=null;
+    renderAdminMain();
+  });
+}
+
+/* ================= BANNERS ================= */
+function renderBannersList(){
+  const rows = banners.slice().sort((a,b)=>a.order-b.order).map(b=>`
+    <div class="admin-row">
+      <div class="admin-row-thumb">${b.imgDesktop?`<img src="${b.imgDesktop}" alt="">`:'<div class="ring"></div>'}</div>
+      <div class="admin-row-info"><strong>${b.title||'(sem título)'}</strong><span>Ordem ${b.order} · ${b.active?'Ativo':'Inativo'}</span></div>
+      <div class="admin-row-actions">
+        <button class="btn btn-outline btn-sm admin-ban-edit" data-id="${b.id}">Editar</button>
+        <button class="btn btn-outline btn-sm admin-ban-del" data-id="${b.id}">Excluir</button>
+      </div>
+    </div>
+  `).join('');
+  return `
+    <div class="admin-header"><h3 class="serif admin-title">Carrossel do site (${banners.length})</h3></div>
+    <p class="admin-sub">Essas são as fotos exibidas no carrossel do topo do site. Adicione, remova, reordene (campo "Ordem") ou desative sem excluir. Título, subtítulo e botão são opcionais — deixe em branco para mostrar só a foto.</p>
+    <div class="admin-toolbar"><button type="button" class="btn btn-gold btn-sm" id="adminBanNewBtn">+ Adicionar foto</button></div>
+    <div class="admin-list">${rows || '<p class="admin-sub">Nenhuma foto cadastrada — o carrossel do site está vazio.</p>'}</div>
+  `;
+}
+function attachBannersListEvents(){
+  document.getElementById('adminBanNewBtn').addEventListener('click', ()=>{
+    adminDraft = {id:Date.now(),title:'',subtitle:'',imgDesktop:null,imgMobile:null,btnText:'',btnLink:'',order:banners.length+1,active:true};
+    adminEditingId = 'new';
+    renderAdminMain();
+  });
+  document.querySelectorAll('.admin-ban-edit').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = Number(btn.dataset.id);
+      adminDraft = JSON.parse(JSON.stringify(banners.find(b=>b.id===id)));
+      adminEditingId = id;
+      renderAdminMain();
+    });
+  });
+  document.querySelectorAll('.admin-ban-del').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = Number(btn.dataset.id);
+      if(confirm('Remover esta foto do carrossel?')){
+        banners = banners.filter(b=>b.id!==id);
+        saveBanners();
+        renderAdminMain();
+      }
+    });
+  });
+}
+function renderBannersForm(){
+  const b = adminDraft;
+  return `
+    <div class="admin-header">
+      <h3 class="serif admin-title">${adminEditingId==='new'?'Adicionar foto ao carrossel':'Editar foto do carrossel'}</h3>
+      <button type="button" class="admin-back-btn" id="adminBackBtn">← Voltar à lista</button>
+    </div>
+    <form id="adminForm" class="admin-form">
+      <fieldset class="admin-fieldset"><legend>Foto (obrigatória)</legend><div id="banDesktopUploader"></div></fieldset>
+      <fieldset class="admin-fieldset"><legend>Versão mobile (opcional — usa a foto acima se não enviar)</legend><div id="banMobileUploader"></div></fieldset>
+      <div class="admin-grid">
+        <div class="form-field"><label for="fBanTitle">Título (opcional)</label><input id="fBanTitle" type="text" value="${b.title||''}"></div>
+        <div class="form-field"><label for="fBanSubtitle">Subtítulo (opcional)</label><input id="fBanSubtitle" type="text" value="${b.subtitle||''}"></div>
+        <div class="form-field"><label for="fBanBtnText">Texto do botão (opcional)</label><input id="fBanBtnText" type="text" value="${b.btnText||''}"></div>
+        <div class="form-field"><label for="fBanBtnLink">Link do botão (opcional)</label><input id="fBanBtnLink" type="text" placeholder="https://" value="${b.btnLink||''}"></div>
+        <div class="form-field"><label for="fBanOrder">Ordem</label><input id="fBanOrder" type="number" min="1" value="${b.order??1}"></div>
+      </div>
+      <label class="admin-checkbox-row"><input type="checkbox" id="fBanActive" ${b.active?'checked':''}> Ativo (aparece no site)</label>
+      <p class="admin-error" id="adminFormError"></p>
+      <div class="admin-form-actions">
+        <button type="submit" class="btn btn-gold">Salvar</button>
+        <button type="button" class="btn btn-outline" id="adminCancelBtn">Cancelar</button>
+      </div>
+    </form>
+  `;
+}
+function attachBannersFormEvents(){
+  document.getElementById('adminBackBtn').addEventListener('click', ()=>{ adminEditingId=null; adminDraft=null; renderAdminMain(); });
+  document.getElementById('adminCancelBtn').addEventListener('click', ()=>{ adminEditingId=null; adminDraft=null; renderAdminMain(); });
+  const bind = (id, field, opts={})=>{
+    const el = document.getElementById(id);
+    el.addEventListener(opts.evt||'input', ()=>{ adminDraft[field] = opts.parser ? opts.parser(el.value) : el.value; });
+  };
+  bind('fBanTitle','title'); bind('fBanSubtitle','subtitle'); bind('fBanBtnText','btnText'); bind('fBanBtnLink','btnLink');
+  bind('fBanOrder','order',{parser:v=>v?parseInt(v,10):1});
+  document.getElementById('fBanActive').addEventListener('change', e=>{ adminDraft.active=e.target.checked; });
+
+  const bd = document.getElementById('banDesktopUploader');
+  bd.innerHTML = renderUploader(adminDraft.imgDesktop?[adminDraft.imgDesktop]:[],{multiple:false});
+  attachUploader(bd, ()=>adminDraft.imgDesktop?[adminDraft.imgDesktop]:[], arr=>{ adminDraft.imgDesktop=arr[0]||null; }, ()=>renderAdminMain());
+
+  const bm = document.getElementById('banMobileUploader');
+  bm.innerHTML = renderUploader(adminDraft.imgMobile?[adminDraft.imgMobile]:[],{multiple:false});
+  attachUploader(bm, ()=>adminDraft.imgMobile?[adminDraft.imgMobile]:[], arr=>{ adminDraft.imgMobile=arr[0]||null; }, ()=>renderAdminMain());
+
+  document.getElementById('adminForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    if(!adminDraft.imgDesktop){ document.getElementById('adminFormError').textContent='Adicione ao menos a imagem desktop.'; return; }
+    if(adminEditingId==='new'){ banners.push(adminDraft); }
+    else{ const i=banners.findIndex(x=>x.id===adminEditingId); if(i>-1) banners[i]=adminDraft; }
+    saveBanners();
+    adminEditingId=null; adminDraft=null;
+    renderAdminMain();
+  });
+}
+
+/* ===== hero carousel ===== */
+const DEFAULT_HERO_PHOTOS = [
+  {img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.54 (4).jpeg", alt:"Cliente usando óculos e brinco Jéssica Laysa"},
+  {img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.54.jpeg", alt:"Óculos solar em detalhe"},
+  {img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.56 (3).jpeg", alt:"Cliente usando óculos oval Jéssica Laysa"},
+  {img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.58 (3).jpeg", alt:"Cliente usando óculos retangular Jéssica Laysa"},
+  {img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 15.00.00 (1).jpeg", alt:"Brincos e óculos Jéssica Laysa"},
+  {img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.59 (1).jpeg", alt:"Óculos e colar dourado Jéssica Laysa"},
+];
+
+function renderHeroCarousel(){
+  const track = document.getElementById('carouselTrack');
+  const activeBanners = banners.filter(b=>b.active).sort((a,b)=>a.order-b.order);
+  if(activeBanners.length>0){
+    track.innerHTML = activeBanners.map(b=>`
+      <div class="carousel-slide">
+        <picture>
+          ${b.imgMobile?`<source media="(max-width:720px)" srcset="${b.imgMobile}">`:''}
+          <img src="${b.imgDesktop}" alt="${b.title||''}" loading="lazy">
+        </picture>
+        ${(b.title||b.subtitle)?`
+          <div class="banner-overlay">
+            ${b.title?`<h3 class="serif">${b.title}</h3>`:''}
+            ${b.subtitle?`<p>${b.subtitle}</p>`:''}
+            ${(b.btnText&&b.btnLink)?`<a class="btn btn-gold btn-sm" href="${b.btnLink}" target="_blank" rel="noopener">${b.btnText}</a>`:''}
+          </div>`:''}
+      </div>`).join('');
+  }else{
+    track.innerHTML = DEFAULT_HERO_PHOTOS.map(p=>`<div class="carousel-slide"><img src="${p.img}" alt="${p.alt}" loading="lazy"></div>`).join('');
+  }
+}
+
+(function(){
+  const wrap = document.getElementById('heroCarousel');
+  const track = document.getElementById('carouselTrack');
+  const dotsWrap = document.getElementById('carouselDots');
+  if(!wrap || !track) return;
+  renderHeroCarousel();
+  const total = track.children.length;
+  let current = 0;
+  let timer;
+
+  for(let i=0;i<total;i++){
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i===0?' active':'');
+    dot.setAttribute('aria-label', `Ir para foto ${i+1}`);
+    dot.addEventListener('click', ()=>{ goTo(i); restart(); });
+    dotsWrap.appendChild(dot);
+  }
+
+  function goTo(i){
+    current = (i+total)%total;
+    track.style.transform = `translateX(-${current*100}%)`;
+    dotsWrap.querySelectorAll('.carousel-dot').forEach((d,idx)=>d.classList.toggle('active', idx===current));
+  }
+  function restart(){
+    clearInterval(timer);
+    timer = setInterval(()=>goTo(current+1), 4500);
+  }
+
+  document.getElementById('carouselNext').addEventListener('click', ()=>{ goTo(current+1); restart(); });
+  document.getElementById('carouselPrev').addEventListener('click', ()=>{ goTo(current-1); restart(); });
+  wrap.addEventListener('mouseenter', ()=>clearInterval(timer));
+  wrap.addEventListener('mouseleave', restart);
+
+  restart();
+})();
+
+/* ===== header scroll state ===== */
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', ()=>{
+  header.classList.toggle('scrolled', window.scrollY>40);
+});
+
+/* ===== mobile nav ===== */
+const mobileNav = document.getElementById('mobileNav');
+document.getElementById('menuToggle').addEventListener('click', ()=>mobileNav.classList.add('open'));
+document.getElementById('mobileNavClose').addEventListener('click', closeMobileNav);
+function closeMobileNav(){ mobileNav.classList.remove('open'); }
+mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMobileNav));
+
+/* ===== reveal on scroll ===== */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+},{threshold:.15});
+document.querySelectorAll('.reveal, .thread-divider').forEach(el=>io.observe(el));
+
+/* ===== toast ===== */
+const toast = document.getElementById('toast');
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'), 3200);
+}
+
+/* ===== contact form (demonstração) ===== */
+document.getElementById('contactForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  showToast('Formulário de demonstração — conecte a um backend real antes de publicar.');
+  e.target.reset();
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+render();
+</script>
+</body>
+</html>
