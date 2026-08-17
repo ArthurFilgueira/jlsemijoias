@@ -2342,11 +2342,11 @@ function renderHeroCarousel(){
   const track = document.getElementById('carouselTrack');
   const activeBanners = banners.filter(b=>b.active).sort((a,b)=>a.order-b.order);
   if(activeBanners.length>0){
-    track.innerHTML = activeBanners.map(b=>`
+    track.innerHTML = activeBanners.map((b,i)=>`
       <div class="carousel-slide">
         <picture>
           ${b.imgMobile?`<source media="(max-width:720px)" srcset="${b.imgMobile}">`:''}
-          <img src="${b.imgDesktop}" alt="${b.title||''}" loading="lazy">
+          <img src="${b.imgDesktop}" alt="${b.title||''}" ${i===0?'fetchpriority="high"':'loading="lazy"'}>
         </picture>
         ${(b.title||b.subtitle)?`
           <div class="banner-overlay">
@@ -2356,7 +2356,7 @@ function renderHeroCarousel(){
           </div>`:''}
       </div>`).join('');
   }else{
-    track.innerHTML = DEFAULT_HERO_PHOTOS.map(p=>`<div class="carousel-slide"><img src="${p.img}" alt="${p.alt}" loading="lazy"></div>`).join('');
+    track.innerHTML = DEFAULT_HERO_PHOTOS.map((p,i)=>`<div class="carousel-slide"><img src="${p.img}" alt="${p.alt}" ${i===0?'fetchpriority="high"':'loading="lazy"'}></div>`).join('');
   }
 }
 
