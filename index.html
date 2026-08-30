@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script defer src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{
   --ivory:#FAF7F1;
@@ -916,23 +917,37 @@ document.getElementById('themeToggle').addEventListener('click', ()=>{
   applyTheme(next);
 });
 
+/* ===== Supabase ===== */
+const SUPABASE_URL = 'https://mpvxhjvbmgobzqcebxxg.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_hKLVRa-XZMPTLYyKkYvx3A_lNwSAiN6';
+const STORAGE_BUCKET = 'product-images';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+async function uploadProductImage(file){
+  const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g,'_');
+  const path = `uploads/${Date.now()}-${Math.random().toString(36).slice(2)}-${safeName}`;
+  const { error } = await sb.storage.from(STORAGE_BUCKET).upload(path, file, { cacheControl:'3600', upsert:false });
+  if(error){ alert('Erro ao enviar imagem: '+error.message); throw error; }
+  const { data } = sb.storage.from(STORAGE_BUCKET).getPublicUrl(path);
+  return data.publicUrl;
+}
+
 /* ===== DADOS: categorias ===== */
-const DEFAULT_CATEGORIES = [
-  {id:"semijoias",name:"Semi Joias",img:"fotos produtos/pulseira 3.jpeg",desc:"Peças banhadas a ouro 18k, selecionadas uma a uma.",icon:"gem",order:1},
-  {id:"oculos",name:"Óculos",img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.55.jpeg",desc:"Óculos solares e de grau com curadoria própria.",icon:"glasses",order:2},
-];
-const CATEGORIES_KEY = 'jl_categories';
-function loadCategories(){
-  const saved = localStorage.getItem(CATEGORIES_KEY);
-  if(saved){ try{ return JSON.parse(saved); }catch(e){} }
-  return JSON.parse(JSON.stringify(DEFAULT_CATEGORIES));
-}
-function saveCategories(){
-  try{ localStorage.setItem(CATEGORIES_KEY, JSON.stringify(categories)); }
-  catch(e){ alert('Não foi possível salvar categorias: armazenamento cheio.'); }
-}
-let categories = loadCategories();
+let categories = [];
 function categoryName(id){ const c = categories.find(x=>x.id===id); return c ? c.name : id; }
+async function loadCategories(){
+  const { data, error } = await sb.from('categories').select('*').order('order');
+  if(error){ console.error(error); return []; }
+  return data.map(r=>({id:r.id, name:r.name, img:r.img, desc:r.description, icon:r.icon, order:r.order}));
+}
+async function saveCategoryDb(c){
+  const { error } = await sb.from('categories').upsert({ id:c.id, name:c.name, img:c.img, description:c.desc, icon:c.icon, order:c.order });
+  if(error){ alert('Não foi possível salvar a categoria: '+error.message); throw error; }
+}
+async function deleteCategoryDb(id){
+  const { error } = await sb.from('categories').delete().eq('id', id);
+  if(error){ alert('Não foi possível excluir a categoria: '+error.message); throw error; }
+}
 
 const CAT_ICONS = {
   gem:'<path d="M12 2l2.2 6.6H21l-5.4 4 2.1 6.6L12 15.8 6.3 19.2l2.1-6.6L3 8.6h6.8z"/>',
@@ -946,130 +961,91 @@ function iconSvg(key){
 }
 
 /* ===== DADOS: carrossel do topo (banners) ===== */
-const DEFAULT_BANNERS = [
-  {id:1,title:'',subtitle:'',imgDesktop:'Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.54 (4).jpeg',imgMobile:null,btnText:'',btnLink:'',order:1,active:true},
-  {id:2,title:'',subtitle:'',imgDesktop:'Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.54.jpeg',imgMobile:null,btnText:'',btnLink:'',order:2,active:true},
-  {id:3,title:'',subtitle:'',imgDesktop:'Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.56 (3).jpeg',imgMobile:null,btnText:'',btnLink:'',order:3,active:true},
-  {id:4,title:'',subtitle:'',imgDesktop:'Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.58 (3).jpeg',imgMobile:null,btnText:'',btnLink:'',order:4,active:true},
-  {id:5,title:'',subtitle:'',imgDesktop:'Fotos Oculos/WhatsApp Image 2026-07-31 at 15.00.00 (1).jpeg',imgMobile:null,btnText:'',btnLink:'',order:5,active:true},
-  {id:6,title:'',subtitle:'',imgDesktop:'Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.59 (1).jpeg',imgMobile:null,btnText:'',btnLink:'',order:6,active:true},
-];
-const BANNERS_KEY = 'jl_banners';
-function loadBanners(){
-  const saved = localStorage.getItem(BANNERS_KEY);
-  if(saved){ try{ return JSON.parse(saved); }catch(e){} }
-  return JSON.parse(JSON.stringify(DEFAULT_BANNERS));
+let banners = [];
+function dbToBanner(row){
+  return {id:row.id, title:row.title, subtitle:row.subtitle, imgDesktop:row.img_desktop, imgMobile:row.img_mobile, btnText:row.btn_text, btnLink:row.btn_link, order:row.order, active:row.active};
 }
-function saveBanners(){
-  try{ localStorage.setItem(BANNERS_KEY, JSON.stringify(banners)); }
-  catch(e){ alert('Não foi possível salvar banners: armazenamento cheio.'); }
+function bannerToDb(b){
+  return {title:b.title, subtitle:b.subtitle, img_desktop:b.imgDesktop, img_mobile:b.imgMobile, btn_text:b.btnText, btn_link:b.btnLink, order:b.order, active:b.active};
 }
-let banners = loadBanners();
-
-/* ===== DADOS DE PRODUTOS (exemplo — substituir pelo catálogo real / API) ===== */
-const DEFAULT_PRODUCTS = [
-  {id:1,name:"Brinco Argola Cristal Dourado",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-BR012",shortDesc:"Argola média cravejada, banhada a ouro 18k.",fullDesc:"Argola média banhada a ouro 18k com cravação de cristais, leve para o uso diário e com brilho que dura.",price:129.90,promo:89.90,stock:18,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:1,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:null,price:null,stock:null,sku:null}]},
-  {id:2,name:"Colar Ponto de Luz Zircônia",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL045",shortDesc:"Colar delicado com pingente de zircônia.",fullDesc:"Colar delicado com pingente de zircônia, corrente fininha banhada a ouro 18k. Peça coringa para qualquer look.",price:189.90,promo:null,stock:24,minStock:4,maxParcelas:null,featured:true,isLaunch:false,order:2,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:null,price:null,stock:null,sku:null}]},
-  {id:3,name:"Pulseira Coração Cravejada",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU019",shortDesc:"Pulseira ajustável com pingente de coração.",fullDesc:"Pulseira ajustável com pingente de coração cravejado, fecho reforçado e acabamento espelhado.",price:99.90,promo:74.90,stock:15,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:3,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:null,price:null,stock:null,sku:null}]},
-  {id:4,name:"Anel Solitário Banhado 18k",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-AN027",shortDesc:"Anel solitário minimalista banhado a ouro 18k.",fullDesc:"Anel solitário minimalista, ideal para compor com outras peças ou usar sozinho no dia a dia.",price:79.90,promo:null,stock:30,minStock:5,maxParcelas:null,featured:false,isLaunch:true,order:4,gallery:[],variantAxes:{color:true,size:true,model:false},variants:[{color:"Único",size:"16",model:null,img:null,price:null,stock:null,sku:null},{color:"Único",size:"18",model:null,img:null,price:null,stock:null,sku:null}]},
-  {id:5,name:"Conjunto Brinco e Colar Gota",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CJ003",shortDesc:"Conjunto em formato gota para ocasiões especiais.",fullDesc:"Conjunto completo em formato gota, perfeito para eventos e ocasiões especiais. Vem em embalagem para presente.",price:249.90,promo:199.90,stock:10,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:5,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:null,price:null,stock:null,sku:null}]},
-  {id:6,name:"Óculos Solar Redondo Clássico",cat:"oculos",brand:"Jéssica Laysa",sku:"JL-OS008",shortDesc:"Armação redonda com proteção UV400.",fullDesc:"Armação redonda com proteção UV400, lentes espelhadas e acabamento fosco premium.",price:159.90,promo:null,stock:14,minStock:3,maxParcelas:null,featured:false,isLaunch:true,order:6,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.59 (2).jpeg",price:null,stock:null,sku:null}]},
-  {id:7,name:"Óculos de Grau Retangular Fosco",cat:"oculos",brand:"Jéssica Laysa",sku:"JL-OG014",shortDesc:"Armação retangular leve para uso prolongado.",fullDesc:"Armação retangular leve, ideal para uso prolongado, com hastes flexíveis e acabamento fosco.",price:219.90,promo:null,stock:9,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:7,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.57 (2).jpeg",price:null,stock:null,sku:null}]},
-  {id:8,name:"Pulseira Berloque Trio",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU033",shortDesc:"Trio de pulseiras finas com berloques.",fullDesc:"Três pulseiras finas com berloques delicados, podem ser usadas juntas ou separadas.",price:119.90,promo:null,stock:20,minStock:3,maxParcelas:null,featured:true,isLaunch:false,order:8,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:null,price:null,stock:null,sku:null}]},
-  {id:9,name:"Óculos Vazado Retangular",cat:"oculos",brand:"Jéssica Laysa",sku:"JL-OS021",shortDesc:"Armação vazada, disponível em duas colorações.",fullDesc:"Armação vazada em metal dourado, hastes com detalhe em C e lentes degradê. Mesmo modelo disponível em duas colorações de lente.",price:189.90,promo:149.90,stock:11,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:9,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[
-    {color:"Âmbar",size:null,model:null,img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 14.59.59 (4).jpeg",price:null,stock:null,sku:null},
-    {color:"Fumê",size:null,model:null,img:"Fotos Oculos/WhatsApp Image 2026-07-31 at 15.00.01 (1).jpeg",price:null,stock:null,sku:null}
-  ]},
-  {id:10,name:"Colar Veneziana Bolinha",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL050",shortDesc:"Colar fino com miçangas douradas espaçadas.",fullDesc:"Colar delicado em corrente fininha com miçangas douradas espaçadas ao longo da peça, banhado a ouro 18k. Combina com o dia a dia e também com produções mais elaboradas.",price:119.90,promo:null,stock:16,minStock:3,maxParcelas:null,featured:false,isLaunch:true,order:10,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/colar 1.jpeg",price:null,stock:null,sku:null}]},
-  {id:11,name:"Colar Bolinha Facetada",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL051",shortDesc:"Colar de bolinhas facetadas com brilho intenso.",fullDesc:"Colar composto por miçangas facetadas bem próximas, criando um efeito de brilho contínuo. Banhado a ouro 18k, com fecho reforçado.",price:149.90,promo:129.90,stock:12,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:11,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/colar 2.jpeg",price:null,stock:null,sku:null}]},
-  {id:12,name:"Colar Elo Cartier",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL052",shortDesc:"Colar de elos retangulares estilo Cartier.",fullDesc:"Colar com elos retangulares no clássico estilo Cartier, banhado a ouro 18k. Peça statement que valoriza qualquer decote.",price:159.90,promo:null,stock:14,minStock:3,maxParcelas:null,featured:true,isLaunch:false,order:12,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/colar 3.jpeg",price:null,stock:null,sku:null}]},
-  {id:13,name:"Colar Longo Correntinha com Esferas",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL053",shortDesc:"Colar longo com esferas douradas espaçadas.",fullDesc:"Colar longo em corrente fina com esferas douradas espaçadas ao longo da peça. Ideal para compor looks em camadas ou usar sozinho.",price:129.90,promo:null,stock:18,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:13,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/colar 4.jpeg",price:null,stock:null,sku:null}]},
-  {id:14,name:"Colar Elos Coração",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL054",shortDesc:"Colar de elos em formato de coração.",fullDesc:"Colar formado por elos entrelaçados em formato de coração, banhado a ouro 18k. Peça delicada e romântica para o dia a dia.",price:139.90,promo:null,stock:15,minStock:3,maxParcelas:null,featured:false,isLaunch:true,order:14,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/coalr 5.jpeg",price:null,stock:null,sku:null}]},
-  {id:15,name:"Colar Cruzes Pingentes",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL055",shortDesc:"Colar com pingentes de cruz ao longo da corrente.",fullDesc:"Colar delicado com diversos pingentes de cruz distribuídos ao longo da corrente, banhado a ouro 18k. Peça versátil com toque simbólico.",price:109.90,promo:89.90,stock:13,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:15,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/colar 6.jpeg",price:null,stock:null,sku:null}]},
-  {id:16,name:"Pulseira Tênis Cristais",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU040",shortDesc:"Pulseira tênis com cristais ovais.",fullDesc:"Pulseira estilo tênis com cristais ovais cravejados um a um, banhada a ouro 18k. Um clássico atemporal para elevar qualquer produção.",price:179.90,promo:null,stock:9,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:16,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/pulseira 1.jpeg",price:null,stock:null,sku:null}]},
-  {id:17,name:"Pulseira Esferas",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU041",shortDesc:"Pulseira fina com esferas douradas.",fullDesc:"Pulseira em corrente fina com esferas douradas dispostas ao longo da peça, banhada a ouro 18k. Leve para o uso diário.",price:99.90,promo:null,stock:20,minStock:4,maxParcelas:null,featured:false,isLaunch:false,order:17,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/pulseira 2.jpeg",price:null,stock:null,sku:null}]},
-  {id:18,name:"Colar Riviera Cravejado",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL060",shortDesc:"Colar riviera cravejado em formato de corações.",fullDesc:"Colar riviera com cravação em formato de corações do início ao fim, banhado a ouro 18k. Peça statement para ocasiões especiais.",price:299.90,promo:249.90,stock:6,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:18,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/pulseira 3.jpeg",price:null,stock:null,sku:null}]},
-  {id:19,name:"Conjunto Borboleta Cravejado",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CJ010",shortDesc:"Conjunto colar e brinco borboleta cravejados.",fullDesc:"Conjunto composto por colar e brincos em formato de borboleta, totalmente cravejados em zircônias, banhado a ouro 18k. Peça statement para ocasiões especiais.",price:219.90,promo:189.90,stock:8,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:19,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.57.58.jpeg",price:null,stock:null,sku:null}]},
-  {id:20,name:"Conjunto Coração Pérola",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CJ011",shortDesc:"Conjunto colar e brinco coração com pérola.",fullDesc:"Conjunto composto por colar e brincos em formato de coração, com pérola ao centro cercada de cristais, banhado a ouro 18k.",price:199.90,promo:null,stock:10,minStock:2,maxParcelas:null,featured:false,isLaunch:true,order:20,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.57.59.jpeg",price:null,stock:null,sku:null}]},
-  {id:21,name:"Brinco Cruz Cravejada",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-BR020",shortDesc:"Brinco pendente de cruz cravejada.",fullDesc:"Brinco pendente em formato de cruz cravejada, banhado a ouro 18k. Combina com o uso empilhado com outros brincos.",price:89.90,promo:null,stock:16,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:21,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.57.59 (1).jpeg",price:null,stock:null,sku:null}]},
-  {id:22,name:"Brinco Folha Pendurada",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-BR021",shortDesc:"Brinco pendente em formato de folha.",fullDesc:"Brinco pendente em formato de folha, acabamento texturizado, banhado a ouro 18k. Leve para o uso diário.",price:79.90,promo:null,stock:14,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:22,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.57.59 (2).jpeg",price:null,stock:null,sku:null}]},
-  {id:23,name:"Anel Ajustável Bolinha",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-AN030",shortDesc:"Anel ajustável com detalhe de bolinha.",fullDesc:"Anel fino ajustável com detalhe de bolinha nas pontas, banhado a ouro 18k. Serve em qualquer tamanho de dedo.",price:69.90,promo:null,stock:22,minStock:4,maxParcelas:null,featured:false,isLaunch:false,order:23,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.00 (1).jpeg",price:null,stock:null,sku:null}]},
-  {id:24,name:"Anel Filigrana",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-AN031",shortDesc:"Anel largo com filigrana vazada.",fullDesc:"Anel largo com trabalho de filigrana vazada em formato floral. Peça statement com acabamento premium.",price:99.90,promo:null,stock:11,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:24,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.00 (2).jpeg",price:null,stock:null,sku:null}]},
-  {id:25,name:"Anel Aliança Cristais Coloridos",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-AN032",shortDesc:"Aliança fina com cristais coloridos.",fullDesc:"Aliança fina cravejada com cristais coloridos em corte baguete, banhada a ouro 18k. Combina sozinha ou empilhada.",price:109.90,promo:89.90,stock:13,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:25,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.00 (3).jpeg",price:null,stock:null,sku:null}]},
-  {id:26,name:"Anel Halo Cristal Colorido",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-AN033",shortDesc:"Anel gota com halo de cristais coloridos.",fullDesc:"Anel em formato gota com cristal central rodeado por halo de cristais coloridos, banhado a ouro 18k.",price:119.90,promo:null,stock:9,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:26,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.01.jpeg",price:null,stock:null,sku:null}]},
-  {id:27,name:"Pulseira Coração Cristal",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU050",shortDesc:"Pulseira elo grosso com pingente de coração cristal.",fullDesc:"Pulseira de elo grosso com pingente de coração liso e charm de coração cristalizado, banhada a ouro 18k. Mesmo modelo disponível em duas cores de cristal.",price:99.90,promo:null,stock:14,minStock:3,maxParcelas:null,featured:false,isLaunch:true,order:27,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[
-    {color:"Rosa",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.01 (1).jpeg",price:null,stock:null,sku:null},
-    {color:"Azul",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.01 (2).jpeg",price:null,stock:null,sku:null}
-  ]},
-  {id:28,name:"Conjunto Coração Dourado",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CJ012",shortDesc:"Conjunto colar e brinco coração abaulado.",fullDesc:"Conjunto composto por colar e brincos em formato de coração abaulado, acabamento liso e brilhante, banhado a ouro 18k.",price:169.90,promo:null,stock:12,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:28,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.01 (3).jpeg",price:null,stock:null,sku:null}]},
-  {id:29,name:"Pulseira Dupla Borboleta",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU051",shortDesc:"Pulseira dupla com pingente de borboleta.",fullDesc:"Pulseira composta por duas correntes sobrepostas com charm de borboleta, banhada a ouro 18k.",price:109.90,promo:null,stock:15,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:29,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.01 (4).jpeg",price:null,stock:null,sku:null}]},
-  {id:30,name:"Pulseira Tripla Medalhas",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU052",shortDesc:"Pulseira tripla com medalhas gravadas.",fullDesc:"Pulseira composta por três correntes finas sobrepostas com medalhas gravadas, banhada a ouro 18k.",price:119.90,promo:null,stock:10,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:30,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 18.58.02.jpeg",price:null,stock:null,sku:null}]},
-  {id:31,name:"Kit 5 Anéis Sobrepostos",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-AN034",shortDesc:"Kit com 5 anéis para usar sobrepostos.",fullDesc:"Kit com 5 anéis de desenhos variados (cruz, cristais e lisos) para usar sobrepostos ou separados, banhados a ouro 18k.",price:149.90,promo:129.90,stock:9,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:31,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.14.jpeg",price:null,stock:null,sku:null}]},
-  {id:32,name:"Brinco Flor Vazada Pendurada",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-BR022",shortDesc:"Brinco pendente em formato de flor vazada.",fullDesc:"Brinco pendente em formato de flor vazada, com cristal na parte superior, banhado a ouro 18k. Peça statement e leve.",price:99.90,promo:null,stock:12,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:32,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.18.jpeg",price:null,stock:null,sku:null}]},
-  {id:33,name:"Colar Medalha Nossa Senhora das Graças",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL070",shortDesc:"Colar com medalha de Nossa Senhora das Graças.",fullDesc:"Colar com pingente de medalha oval de Nossa Senhora das Graças cravejada, corrente fininha banhada. Peça delicada com toque simbólico.",price:99.90,promo:null,stock:14,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:33,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.25.jpeg",price:null,stock:null,sku:null}]},
-  {id:34,name:"Colar Longo Pérolas",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL071",shortDesc:"Colar longo com pérolas espaçadas.",fullDesc:"Colar longo com pérolas naturais espaçadas ao longo da corrente, banhado a ouro 18k. Pode ser usado duplo ou solto.",price:169.90,promo:null,stock:8,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:34,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.27.jpeg",price:null,stock:null,sku:null}]},
-  {id:35,name:"Pulseira Medalhas Trio",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-PU053",shortDesc:"Pulseira com trio de medalhas pendentes.",fullDesc:"Pulseira em corrente fina com três medalhas gravadas pendentes, banhada a ouro 18k.",price:99.90,promo:null,stock:13,minStock:3,maxParcelas:null,featured:false,isLaunch:false,order:35,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.28.jpeg",price:null,stock:null,sku:null}]},
-  {id:36,name:"Colar Multi Pingente Cravejado",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL072",shortDesc:"Colar com quatro pingentes cravejados.",fullDesc:"Colar com quatro pingentes cravejados (coração, ponto de luz, cruz e trevo), banhado a ouro 18k. Peça statement cheia de significado.",price:159.90,promo:139.90,stock:10,minStock:2,maxParcelas:null,featured:true,isLaunch:false,order:36,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.29.jpeg",price:null,stock:null,sku:null}]},
-  {id:37,name:"Colar Placa Símbolo",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL073",shortDesc:"Colar com placa gravada, símbolo à escolha.",fullDesc:"Colar com pingente em formato de placa retangular gravada, banhado a ouro 18k. Disponível com símbolo de Estrela de Davi ou Cruz.",price:109.90,promo:null,stock:11,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:37,gallery:[],variantAxes:{color:false,size:false,model:true},variants:[
-    {color:null,size:null,model:"Estrela de Davi",img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.30.jpeg",price:null,stock:null,sku:null},
-    {color:null,size:null,model:"Cruz",img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.30.jpeg",price:null,stock:null,sku:null}
-  ]},
-  {id:38,name:"Colar Medalhão Abre e Fecha",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL074",shortDesc:"Colar medalhão oval que abre e fecha.",fullDesc:"Colar com pingente medalhão oval que abre e fecha, ideal para guardar uma foto ou dedicatória. Banhado a ouro 18k.",price:129.90,promo:null,stock:9,minStock:2,maxParcelas:null,featured:false,isLaunch:true,order:38,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.30 (1).jpeg",price:null,stock:null,sku:null}]},
-  {id:39,name:"Colar Medalha Nossa Senhora Aparecida",cat:"semijoias",brand:"Jéssica Laysa",sku:"JL-CL075",shortDesc:"Colar com medalha de Nossa Senhora Aparecida.",fullDesc:"Colar com pingente de medalha oval de Nossa Senhora Aparecida, detalhe cravejado, banhado a ouro 18k. Peça delicada com toque simbólico.",price:109.90,promo:null,stock:12,minStock:2,maxParcelas:null,featured:false,isLaunch:false,order:39,gallery:[],variantAxes:{color:true,size:false,model:false},variants:[{color:"Único",size:null,model:null,img:"fotos produtos/WhatsApp Image 2026-08-02 at 19.01.30 (2).jpeg",price:null,stock:null,sku:null}]},
-];
-
-const PRODUCTS_KEY = 'jl_products';
-function loadProducts(){
-  const saved = localStorage.getItem(PRODUCTS_KEY);
-  if(saved){
-    try{ return JSON.parse(saved); }catch(e){ /* dados corrompidos: cai no padrão */ }
+async function loadBanners(){
+  const { data, error } = await sb.from('banners').select('*').order('order');
+  if(error){ console.error(error); return []; }
+  return data.map(dbToBanner);
+}
+async function saveBannerDb(b){
+  const payload = bannerToDb(b);
+  if(b.id){
+    const { error } = await sb.from('banners').update(payload).eq('id', b.id);
+    if(error){ alert('Não foi possível salvar o banner: '+error.message); throw error; }
+  }else{
+    const { data, error } = await sb.from('banners').insert(payload).select().single();
+    if(error){ alert('Não foi possível criar o banner: '+error.message); throw error; }
+    b.id = data.id;
   }
-  return JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
 }
-function saveProducts(){
-  try{ localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products)); }
-  catch(e){ alert('Não foi possível salvar: armazenamento do navegador cheio. Tente usar fotos menores ou remover produtos antigos.'); }
+async function deleteBannerDb(id){
+  const { error } = await sb.from('banners').delete().eq('id', id);
+  if(error){ alert('Não foi possível excluir o banner: '+error.message); throw error; }
+}
+
+/* ===== DADOS DE PRODUTOS (Supabase) ===== */
+let products = [];
+function dbToProduct(row){
+  return {
+    id: row.id, name: row.name, cat: row.cat, brand: row.brand, sku: row.sku,
+    shortDesc: row.short_desc, fullDesc: row.full_desc,
+    price: row.price!=null?Number(row.price):null, promo: row.promo!=null?Number(row.promo):null,
+    stock: row.stock, minStock: row.min_stock, maxParcelas: row.max_parcelas,
+    featured: row.featured, isLaunch: row.is_launch, order: row.order,
+    gallery: row.gallery||[], variantAxes: row.variant_axes||{color:true,size:false,model:false},
+    variants: (row.variants&&row.variants.length) ? row.variants : [{color:'Único',size:null,model:null,img:null,price:null,stock:null,sku:null}]
+  };
+}
+function productToDb(p){
+  return {
+    name:p.name, cat:p.cat, brand:p.brand, sku:p.sku, short_desc:p.shortDesc, full_desc:p.fullDesc,
+    price:p.price, promo:p.promo, stock:p.stock, min_stock:p.minStock, max_parcelas:p.maxParcelas,
+    featured:p.featured, is_launch:p.isLaunch, order:p.order, gallery:p.gallery,
+    variant_axes:p.variantAxes, variants:p.variants
+  };
 }
 function normalizeProduct(p){
   if(!p.variantAxes) p.variantAxes = {color:true,size:false,model:false};
   if(!Array.isArray(p.variants) || !p.variants.length){
-    if(Array.isArray(p.colors) && p.colors.length){
-      p.variants = p.colors.map(c=>({color:c.name||'Único',size:null,model:null,img:c.img||null,price:null,stock:null,sku:null}));
-    }else{
-      p.variants = [{color:'Único',size:null,model:null,img:p.img||null,price:null,stock:null,sku:null}];
-    }
+    p.variants = [{color:'Único',size:null,model:null,img:null,price:null,stock:null,sku:null}];
   }
   if(p.gallery==null) p.gallery = [];
   if(p.brand==null) p.brand = 'Jéssica Laysa';
-  if(p.sku==null) p.sku = p.code || '';
-  if(p.shortDesc==null) p.shortDesc = p.desc || '';
-  if(p.fullDesc==null) p.fullDesc = p.desc || p.shortDesc || '';
+  if(p.sku==null) p.sku = '';
+  if(p.shortDesc==null) p.shortDesc = '';
+  if(p.fullDesc==null) p.fullDesc = p.shortDesc || '';
   if(p.featured==null) p.featured = false;
   if(p.isLaunch==null) p.isLaunch = false;
   if(p.maxParcelas===undefined) p.maxParcelas = null;
   if(p.order==null) p.order = p.id || 0;
   return p;
 }
-let products = loadProducts().map(normalizeProduct);
-saveProducts();
-(function mergeNewDefaultProducts(){
-  let changed = false;
-  DEFAULT_PRODUCTS.forEach(dp=>{
-    const existing = products.find(p=>p.id===dp.id);
-    if(!existing){
-      products.push(JSON.parse(JSON.stringify(dp)));
-      changed = true;
-    }else{
-      dp.variants.forEach((dv,i)=>{
-        if(dv.img && existing.variants[i] && !existing.variants[i].img){
-          existing.variants[i].img = dv.img;
-          changed = true;
-        }
-      });
-    }
-  });
-  if(changed) saveProducts();
-})();
+async function loadProducts(){
+  const { data, error } = await sb.from('products').select('*').order('order');
+  if(error){ console.error(error); return []; }
+  return data.map(dbToProduct).map(normalizeProduct);
+}
+async function saveProductDb(p){
+  const payload = productToDb(p);
+  if(p.id){
+    const { error } = await sb.from('products').update(payload).eq('id', p.id);
+    if(error){ alert('Não foi possível salvar o produto: '+error.message); throw error; }
+  }else{
+    const { data, error } = await sb.from('products').insert(payload).select().single();
+    if(error){ alert('Não foi possível criar o produto: '+error.message); throw error; }
+    p.id = data.id;
+  }
+}
+async function deleteProductDb(id){
+  const { error } = await sb.from('products').delete().eq('id', id);
+  if(error){ alert('Não foi possível excluir o produto: '+error.message); throw error; }
+}
 
 const grid = document.getElementById('productGrid');
 const emptyState = document.getElementById('emptyState');
@@ -1333,7 +1309,6 @@ function renderCatTeaser(){
   }).join('');
   wrap.querySelectorAll('.cat-link').forEach(a=>a.addEventListener('click', ()=>handleCatLinkClick(a)));
 }
-renderCatTeaser();
 
 /* ===== quick view / compra modal ===== */
 const modalOverlay = document.getElementById('modalOverlay');
@@ -1480,40 +1455,17 @@ modalOverlay.addEventListener('click', e=>{ if(e.target===modalOverlay) closeMod
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
 
 /* ===== painel administrativo ===== */
-const ADMIN_PASSWORD = 'Gaspar1905!';
-const ADMIN_SESSION_KEY = 'jl_admin_session';
 let adminView = 'produtos';        // 'produtos' | 'categorias' | 'banners'
 let adminEditingId = null;         // null = lista | 'new' = criando | id = editando
 let adminDraft = null;
 let adminProductFilter = { search:'', cat:'todos' };
 
-function isAdminLoggedIn(){ return sessionStorage.getItem(ADMIN_SESSION_KEY)==='1'; }
+async function isAdminLoggedIn(){ const { data } = await sb.auth.getSession(); return !!data.session; }
 
 function slugify(s){
   return (s||'').toString().toLowerCase().trim()
     .normalize('NFD').replace(/\p{Diacritic}/gu,'')
     .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || ('cat-'+Date.now());
-}
-
-function readImageAsDataURL(file, maxW=1000, quality=0.82){
-  return new Promise((resolve,reject)=>{
-    const reader = new FileReader();
-    reader.onload = ()=>{
-      const img = new Image();
-      img.onload = ()=>{
-        const scale = Math.min(1, maxW/img.width);
-        const canvas = document.createElement('canvas');
-        canvas.width = Math.round(img.width*scale);
-        canvas.height = Math.round(img.height*scale);
-        canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
-        resolve(canvas.toDataURL('image/jpeg', quality));
-      };
-      img.onerror = reject;
-      img.src = reader.result;
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
 }
 
 /* ---- uploader de imagens reutilizável (drag&drop, múltiplas, preview, excluir, reordenar) ---- */
@@ -1555,16 +1507,22 @@ function attachUploader(rootEl, getArr, setArr, onChange){
   async function handleFiles(fileList){
     const files = Array.from(fileList).filter(f=>f.type.startsWith('image/'));
     if(!files.length) return;
+    const originalText = dz.innerHTML;
+    dz.innerHTML = 'Enviando...';
     let arr = (getArr()||[]).filter(Boolean);
-    if(!multiple){
-      arr = [await readImageAsDataURL(files[0])];
-    }else{
-      for(const f of files){
-        try{ arr.push(await readImageAsDataURL(f)); }catch(e){}
+    try{
+      if(!multiple){
+        arr = [await uploadProductImage(files[0])];
+      }else{
+        for(const f of files){
+          try{ arr.push(await uploadProductImage(f)); }catch(e){}
+        }
       }
+      setArr(arr);
+      onChange();
+    }finally{
+      dz.innerHTML = originalText;
     }
-    setArr(arr);
-    onChange();
   }
   rootEl.querySelectorAll('.admin-thumb-del').forEach(btn=>{
     btn.addEventListener('click', ()=>{
@@ -1600,8 +1558,8 @@ function closeAdminAuth(){ adminAuthOverlay.classList.remove('show'); }
 document.getElementById('adminAuthClose').addEventListener('click', closeAdminAuth);
 adminAuthOverlay.addEventListener('click', e=>{ if(e.target===adminAuthOverlay) closeAdminAuth(); });
 
-document.getElementById('adminTrigger').addEventListener('click', ()=>{
-  if(isAdminLoggedIn()) enterAdminApp();
+document.getElementById('adminTrigger').addEventListener('click', async ()=>{
+  if(await isAdminLoggedIn()) enterAdminApp();
   else openAdminAuth();
 });
 
@@ -1620,15 +1578,17 @@ function closeQuickCatModal(result){
   quickCatOnResult = null;
   if(cb) cb(result);
 }
-document.getElementById('adminQuickCatForm').addEventListener('submit', e=>{
+document.getElementById('adminQuickCatForm').addEventListener('submit', async e=>{
   e.preventDefault();
   const name = document.getElementById('quickCatName').value.trim();
   const errorEl = document.getElementById('quickCatError');
   if(!name){ errorEl.textContent='Digite um nome.'; return; }
   const id = slugify(name);
   if(categories.some(c=>c.id===id)){ errorEl.textContent='Já existe uma categoria com esse nome.'; return; }
-  categories.push({id, name, img:null, desc:'', icon:'tag', order:categories.length+1});
-  saveCategories(); render(); renderCatTeaser();
+  const newCat = {id, name, img:null, desc:'', icon:'tag', order:categories.length+1};
+  try{ await saveCategoryDb(newCat); }catch(err){ return; }
+  categories.push(newCat);
+  render(); renderCatTeaser();
   closeQuickCatModal(id);
 });
 document.getElementById('adminQuickCatClose').addEventListener('click', ()=>closeQuickCatModal(null));
@@ -1639,23 +1599,28 @@ document.getElementById('adminQuickCatOverlay').addEventListener('click', e=>{
 
 function renderAdminAuth(){
   adminAuthContent.innerHTML = renderLoginForm();
-  document.getElementById('adminLoginForm').addEventListener('submit', e=>{
+  document.getElementById('adminLoginForm').addEventListener('submit', async e=>{
     e.preventDefault();
-    const val = document.getElementById('adminPassInput').value;
-    if(val === ADMIN_PASSWORD){
-      sessionStorage.setItem(ADMIN_SESSION_KEY,'1');
+    const email = document.getElementById('adminEmailInput').value.trim();
+    const password = document.getElementById('adminPassInput').value;
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    const { error } = await sb.auth.signInWithPassword({ email, password });
+    btn.disabled = false;
+    if(!error){
       closeAdminAuth();
       enterAdminApp();
     }else{
-      document.getElementById('adminLoginError').textContent = 'Senha incorreta.';
+      document.getElementById('adminLoginError').textContent = 'E-mail ou senha incorretos.';
     }
   });
 }
 function renderLoginForm(){
   return `
     <h3 class="serif admin-title">Área Admin</h3>
-    <p class="admin-sub">Entre com a senha para editar o catálogo.</p>
+    <p class="admin-sub">Entre com seu e-mail e senha para editar o catálogo.</p>
     <form id="adminLoginForm">
+      <div class="form-field"><label for="adminEmailInput">E-mail</label><input id="adminEmailInput" type="email" required autocomplete="username"></div>
       <div class="form-field"><label for="adminPassInput">Senha</label><input id="adminPassInput" type="password" required autocomplete="current-password"></div>
       <p class="admin-error" id="adminLoginError"></p>
       <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;">Entrar</button>
@@ -1672,8 +1637,8 @@ function enterAdminApp(){
 }
 function exitAdminApp(){ document.body.classList.remove('admin-mode'); }
 document.getElementById('adminExitBtn').addEventListener('click', exitAdminApp);
-document.getElementById('adminLogoutBtn').addEventListener('click', ()=>{
-  sessionStorage.removeItem(ADMIN_SESSION_KEY);
+document.getElementById('adminLogoutBtn').addEventListener('click', async ()=>{
+  await sb.auth.signOut();
   exitAdminApp();
 });
 document.getElementById('adminNav').addEventListener('click', e=>{
@@ -1742,27 +1707,27 @@ function attachProductRowEvents(){
     });
   });
   document.querySelectorAll('.admin-dup-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
+    btn.addEventListener('click', async ()=>{
       const id = Number(btn.dataset.id);
       const p = products.find(x=>x.id===id);
       const copy = JSON.parse(JSON.stringify(p));
-      copy.id = Date.now();
+      delete copy.id;
       copy.name = p.name+' (cópia)';
       copy.sku = p.sku+'-COPIA';
       copy.order = products.length+1;
+      try{ await saveProductDb(copy); }catch(err){ return; }
       products.push(copy);
-      saveProducts();
       render();
       refreshProductRows();
     });
   });
   document.querySelectorAll('.admin-del-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
+    btn.addEventListener('click', async ()=>{
       const id = Number(btn.dataset.id);
       const p = products.find(x=>x.id===id);
       if(confirm(`Excluir "${p.name}"? Essa ação não pode ser desfeita.`)){
+        try{ await deleteProductDb(id); }catch(err){ return; }
         products = products.filter(x=>x.id!==id);
-        saveProducts();
         render();
         refreshProductRows();
       }
@@ -1798,7 +1763,7 @@ function renderProdutosList(){
 function attachProdutosListEvents(){
   document.getElementById('adminNewBtn').addEventListener('click', ()=>{
     adminDraft = {
-      id:Date.now(), name:'', cat:categories[0]?.id||'', brand:'Jéssica Laysa', sku:'',
+      id:null, name:'', cat:categories[0]?.id||'', brand:'Jéssica Laysa', sku:'',
       shortDesc:'', fullDesc:'', price:null, promo:null, stock:null, minStock:null, maxParcelas:null,
       featured:false, isLaunch:false, order:products.length+1, gallery:[],
       variantAxes:{color:true,size:false,model:false},
@@ -1943,10 +1908,10 @@ function rowsToProducts(rows){
   });
 }
 
-function importProductsFromRows(rows){
+async function importProductsFromRows(rows){
   const imported = rowsToProducts(rows);
   let updated=0, created=0;
-  imported.forEach(imp=>{
+  for(const imp of imported){
     const existing = products.find(p=>p.id===imp.id) ||
       (imp.sku ? products.find(p=>p.sku && p.sku.toLowerCase()===imp.sku.toLowerCase()) : null);
     if(existing){
@@ -1956,13 +1921,13 @@ function importProductsFromRows(rows){
         if(exV) v.img = exV.img;
       });
       Object.assign(existing, imp, {id:existing.id});
-      updated++;
+      try{ await saveProductDb(existing); updated++; }catch(err){}
     }else{
-      products.push(imp);
-      created++;
+      delete imp.id;
+      try{ await saveProductDb(imp); products.push(imp); created++; }catch(err){}
     }
-  });
-  saveProducts(); render(); refreshProductRows();
+  }
+  render(); refreshProductRows();
   alert(`Importação concluída: ${created} produto(s) novo(s), ${updated} atualizado(s). Fotos já existentes foram mantidas.`);
 }
 
@@ -2105,7 +2070,7 @@ function attachProdutosFormEvents(){
     attachUploader(wrap, ()=>adminDraft.variants[i].img?[adminDraft.variants[i].img]:[], arr=>{ adminDraft.variants[i].img=arr[0]||null; }, ()=>renderAdminMain());
   });
 
-  document.getElementById('adminForm').addEventListener('submit', e=>{
+  document.getElementById('adminForm').addEventListener('submit', async e=>{
     e.preventDefault();
     const errs = [];
     if(!adminDraft.name) errs.push('nome');
@@ -2121,9 +2086,9 @@ function attachProdutosFormEvents(){
     if(!adminDraft.variants.length) adminDraft.variants=[{color:'Único',size:null,model:null,img:null,price:null,stock:null,sku:null}];
     if(!adminDraft.order) adminDraft.order = Date.now();
 
+    try{ await saveProductDb(adminDraft); }catch(err){ return; }
     if(adminEditingId==='new'){ products.push(adminDraft); }
     else{ const i=products.findIndex(x=>x.id===adminEditingId); if(i>-1) products[i]=adminDraft; }
-    saveProducts();
     render();
     adminEditingId = null; adminDraft = null;
     renderAdminMain();
@@ -2162,14 +2127,15 @@ function attachCategoriasListEvents(){
     });
   });
   document.querySelectorAll('.admin-cat-del').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
+    btn.addEventListener('click', async ()=>{
       const id = btn.dataset.id;
       const inUse = products.filter(p=>p.cat===id).length;
       if(inUse>0){ alert(`Não é possível excluir: ${inUse} produto(s) usam essa categoria. Altere a categoria desses produtos primeiro.`); return; }
       if(categories.length<=1){ alert('É preciso manter ao menos uma categoria.'); return; }
       if(confirm('Excluir esta categoria?')){
+        try{ await deleteCategoryDb(id); }catch(err){ return; }
         categories = categories.filter(c=>c.id!==id);
-        saveCategories(); render(); renderCatTeaser();
+        render(); renderCatTeaser();
         renderAdminMain();
       }
     });
@@ -2211,18 +2177,20 @@ function attachCategoriasFormEvents(){
   wrap.innerHTML = renderUploader(adminDraft.img?[adminDraft.img]:[],{multiple:false});
   attachUploader(wrap, ()=>adminDraft.img?[adminDraft.img]:[], arr=>{ adminDraft.img=arr[0]||null; }, ()=>renderAdminMain());
 
-  document.getElementById('adminForm').addEventListener('submit', e=>{
+  document.getElementById('adminForm').addEventListener('submit', async e=>{
     e.preventDefault();
     if(!adminDraft.name){ document.getElementById('adminFormError').textContent='Preencha o nome da categoria.'; return; }
     if(adminEditingId==='new'){
       adminDraft.id = slugify(adminDraft.name);
       if(categories.some(c=>c.id===adminDraft.id)){ document.getElementById('adminFormError').textContent='Já existe uma categoria com esse nome.'; return; }
+      try{ await saveCategoryDb(adminDraft); }catch(err){ return; }
       categories.push(adminDraft);
     }else{
+      try{ await saveCategoryDb(adminDraft); }catch(err){ return; }
       const i = categories.findIndex(c=>c.id===adminEditingId);
       if(i>-1) categories[i] = adminDraft;
     }
-    saveCategories(); render(); renderCatTeaser();
+    render(); renderCatTeaser();
     adminEditingId=null; adminDraft=null;
     renderAdminMain();
   });
@@ -2249,7 +2217,7 @@ function renderBannersList(){
 }
 function attachBannersListEvents(){
   document.getElementById('adminBanNewBtn').addEventListener('click', ()=>{
-    adminDraft = {id:Date.now(),title:'',subtitle:'',imgDesktop:null,imgMobile:null,btnText:'',btnLink:'',order:banners.length+1,active:true};
+    adminDraft = {id:null,title:'',subtitle:'',imgDesktop:null,imgMobile:null,btnText:'',btnLink:'',order:banners.length+1,active:true};
     adminEditingId = 'new';
     renderAdminMain();
   });
@@ -2262,11 +2230,11 @@ function attachBannersListEvents(){
     });
   });
   document.querySelectorAll('.admin-ban-del').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
+    btn.addEventListener('click', async ()=>{
       const id = Number(btn.dataset.id);
       if(confirm('Remover esta foto do carrossel?')){
+        try{ await deleteBannerDb(id); }catch(err){ return; }
         banners = banners.filter(b=>b.id!==id);
-        saveBanners();
         renderAdminMain();
       }
     });
@@ -2317,12 +2285,12 @@ function attachBannersFormEvents(){
   bm.innerHTML = renderUploader(adminDraft.imgMobile?[adminDraft.imgMobile]:[],{multiple:false});
   attachUploader(bm, ()=>adminDraft.imgMobile?[adminDraft.imgMobile]:[], arr=>{ adminDraft.imgMobile=arr[0]||null; }, ()=>renderAdminMain());
 
-  document.getElementById('adminForm').addEventListener('submit', e=>{
+  document.getElementById('adminForm').addEventListener('submit', async e=>{
     e.preventDefault();
     if(!adminDraft.imgDesktop){ document.getElementById('adminFormError').textContent='Adicione ao menos a imagem desktop.'; return; }
+    try{ await saveBannerDb(adminDraft); }catch(err){ return; }
     if(adminEditingId==='new'){ banners.push(adminDraft); }
     else{ const i=banners.findIndex(x=>x.id===adminEditingId); if(i>-1) banners[i]=adminDraft; }
-    saveBanners();
     adminEditingId=null; adminDraft=null;
     renderAdminMain();
   });
@@ -2360,7 +2328,7 @@ function renderHeroCarousel(){
   }
 }
 
-(function(){
+function initHeroCarousel(){
   const wrap = document.getElementById('heroCarousel');
   const track = document.getElementById('carouselTrack');
   const dotsWrap = document.getElementById('carouselDots');
@@ -2370,6 +2338,7 @@ function renderHeroCarousel(){
   let current = 0;
   let timer;
 
+  dotsWrap.innerHTML = '';
   for(let i=0;i<total;i++){
     const dot = document.createElement('button');
     dot.className = 'carousel-dot' + (i===0?' active':'');
@@ -2394,7 +2363,7 @@ function renderHeroCarousel(){
   wrap.addEventListener('mouseleave', restart);
 
   restart();
-})();
+}
 
 /* ===== header scroll state ===== */
 const header = document.getElementById('siteHeader');
@@ -2432,7 +2401,13 @@ document.getElementById('contactForm').addEventListener('submit', e=>{
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-render();
+/* ===== inicialização (carrega dados do Supabase) ===== */
+(async function init(){
+  [categories, banners, products] = await Promise.all([loadCategories(), loadBanners(), loadProducts()]);
+  render();
+  renderCatTeaser();
+  initHeroCarousel();
+})();
 </script>
 </body>
 </html>
