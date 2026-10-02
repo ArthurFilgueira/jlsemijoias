@@ -1,0 +1,85 @@
+/* Tokens de design (cores, fontes, espaçamentos), reset e animação de entrada */
+:root{
+  /* superfícies */
+  --bg:#FBF9F5;
+  --bg-alt:#F4EFE7;
+  --bg-blush:#F7EEEA;
+  --surface:#FFFFFF;
+  /* texto */
+  --ink:#1B1713;
+  --ink-soft:#5A5148;
+  --muted:#8E857A;
+  --line:rgba(27,23,19,.09);
+  /* marca */
+  --dark:#15120F;
+  --dark-2:#201B17;
+  --on-dark:#F5F0E8;
+  --on-dark-soft:rgba(245,240,232,.64);
+  --gold:#C4A062;
+  --gold-deep:#9A7838;
+  --gold-soft:rgba(196,160,98,.14);
+  /* WhatsApp */
+  --wa:#25D366;
+  --wa-strong:#1EAA55;
+  --wa-dark:#178D45;
+  /* sistema */
+  --radius:6px;
+  --radius-lg:14px;
+  --shadow-sm:0 2px 10px -4px rgba(27,23,19,.10);
+  --shadow:0 24px 60px -32px rgba(27,23,19,.28);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --gutter:clamp(20px,4vw,48px);
+  --section:clamp(80px,10vw,144px);
+  --serif:'Cormorant Garamond','Times New Roman',serif;
+  --sans:'Manrope',system-ui,sans-serif;
+
+  /* nomes antigos (usados pelo painel admin) */
+  --ivory:var(--bg);
+  --ivory-deep:var(--bg-alt);
+  --onyx:var(--dark);
+  --graphite:var(--ink-soft);
+  --stone:#E6DFD3;
+  --white:var(--surface);
+  --gold-light:#EFE4CC;
+}
+:root[data-theme="dark"]{
+  --bg:#110F0C;
+  --bg-alt:#18150F;
+  --bg-blush:#1B1613;
+  --surface:#1C1915;
+  --ink:#F2EDE4;
+  --ink-soft:#BFB6A8;
+  --muted:#8F877B;
+  --line:rgba(242,237,228,.10);
+  --gold-deep:#D6B677;
+  --stone:#37322A;
+  --gold-light:rgba(196,160,98,.22);
+  --shadow-sm:0 2px 10px -4px rgba(0,0,0,.5);
+  --shadow:0 24px 60px -32px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:96px;}
+body{
+  font-family:var(--sans);font-size:15px;line-height:1.6;
+  background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  transition:background .4s var(--ease), color .4s var(--ease);
+}
+body.no-scroll{overflow:hidden;}
+img,svg{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+ul{list-style:none;}
+.serif{font-family:var(--serif);}
+h1,h2,h3,h4,.hero-proof strong,.story-sign{font-variant-numeric:lining-nums;}
+.container{width:min(1280px,100% - var(--gutter)*2);margin:0 auto;}
+.eyebrow{display:inline-block;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;}
+::selection{background:var(--gold-light);color:var(--ink);}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+}
+
+/* ---------- entrada suave ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease), transform 1s var(--ease);}
+.reveal.in{opacity:1;transform:none;}
